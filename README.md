@@ -13,8 +13,9 @@ is a website Project make by Group name 'รอแปป'
 
 
 #เผลอ Push ทับแล้วจะย้อนคืน  
- * git reset --hard HEAD~1   ***ย้อนกับไป comit***  
- * git push -f origin main   ***บังคับย้อนค่าบน Server (ข้อมูลที่แก้ไปจะหายหมด)***  
+ * git reset --hard HEAD~1   ----***ย้อนกับไป comit***----  
+ * git push -f origin main   ***บังคับย้อนค่าบน Server (ข้อมูลที่แก้ไปจะหายหมด)***----  
+
 
 
 
