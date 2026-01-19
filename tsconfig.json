@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+<<<<<<< HEAD
     "target": "ES2017",
     "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
@@ -31,4 +32,14 @@
     "**/*.mts"
   ],
   "exclude": ["node_modules"]
+=======
+    "target": "ES5",
+    "module": "CommonJS",
+    "sourceMap": true,
+    "outDir": "./dist",
+    "rootDir": "./src",
+    "strict": true,
+    "esModuleInterop": true
+  }
+>>>>>>> 2833891df7285e558710afd389da5f3a0beddbfb
 }
