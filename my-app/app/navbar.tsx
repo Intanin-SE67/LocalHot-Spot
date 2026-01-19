@@ -21,7 +21,7 @@ export default function Navbar() {
                         </div>
 
                         <div className="nav-item">
-                            <span className="nav-text">History</span>
+                            <span className="nav-text"><a href='/history'>History</a></span>
                         </div>
 
                         <div className="nav-item">
