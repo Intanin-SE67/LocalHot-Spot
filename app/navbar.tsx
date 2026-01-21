@@ -14,7 +14,7 @@ export default function Navbar() {
                     <div className="toolbar-left">
                         <div className="nav-item">
                             <span className="nav-text">
-                                question 
+                                <a href="./">question</a>
                             </span>
                             <ChevronDown size={12}/>
                             
@@ -41,7 +41,9 @@ export default function Navbar() {
 
                         <div className="select-field">
                             <div className="select-container">
-                                <span className="select-value">Create a question</span>
+                                <span className="select-value">
+                                    <a href="./create">Create a question</a>
+                                </span>
                             </div>
                         </div>
                         
