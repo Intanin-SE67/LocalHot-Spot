@@ -1,6 +1,24 @@
-import Navbar from "../navbar";
+"use client";
+import { useRouter } from "next/navigation";
+import Navbar from "../../navbar";
+import { useState } from "react";
+import { title } from "process";
 
 export default function CoverPage() {
+  const router = useRouter();
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+
+  const isFormComplete = title.trim() !== "" && description.trim() !== "";
+  
+  const handleNext = () => {
+    if (!isFormComplete) {
+        alert("Please fill in all fields.");
+        return;
+    }
+    router.push("/create/choices");
+  };
+
   return (
     <div>
       <Navbar />
@@ -23,7 +41,7 @@ export default function CoverPage() {
         <div className="line"></div>
         <div className="container-input">
           
-          <input type="text" placeholder="Tile" className="input-text"></input>
+          <input type="text" placeholder="Tile" className="input-text" value={title} onChange={(e) => setTitle(e.target.value)}></input>
         </div>
 
 
@@ -32,7 +50,7 @@ export default function CoverPage() {
         <div className="line"></div>
         <div className="container-input">
           
-          <textarea placeholder="Description" className="input-area"></textarea>
+          <textarea placeholder="Description" className="input-area" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
         </div>
 
 
@@ -44,7 +62,7 @@ export default function CoverPage() {
         </div>
 
         <div className="container-button">
-          <button className="button-create">Choices&gt;</button>
+          <button onClick={handleNext} className="button-create">Choices&gt;</button>
         </div>
       </div>
     </div>

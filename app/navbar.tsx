@@ -8,7 +8,7 @@ export default function Navbar() {
             <header className="header">
                 <div className="toolbar">
                     <div className="title-section">
-                        <h1 className="main-title">LocalhosT SpoT</h1>
+                        <h1 className="main-title"><a href="../">LocalhosT SpoT</a></h1>
                     </div>
                     
                     <div className="toolbar-left">
@@ -42,7 +42,7 @@ export default function Navbar() {
                         <div className="select-field">
                             <div className="select-container">
                                 <span className="select-value">
-                                    <a href="./create">Create a question</a>
+                                    <a href="./create/cover">Create a question</a>
                                 </span>
                             </div>
                         </div>
