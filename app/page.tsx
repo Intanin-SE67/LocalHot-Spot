@@ -13,7 +13,7 @@ export default function Home() {
             <div className="card-header">
               <p>restaurant</p>
               <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
+                <img src ="#" className="img-card-header">
                 restaurant
               </p>
             </div>
