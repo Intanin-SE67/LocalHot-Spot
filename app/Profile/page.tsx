@@ -5,7 +5,7 @@ export default function HistoryPage() {
     <div>
       <Navbar />
       <div className="container-text">
-        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>My WorldCup</h1>
+        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>User</h1>
         <div className="menu-sort">
           <span style={{ color: '#BC4126'}}>Latest</span> |
           <span> Oldest</span> |
