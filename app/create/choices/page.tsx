@@ -20,33 +20,30 @@ export default function ChoicesPage() {
       </div>
 
 
-      <div className="container-create">
-        <div>
-          
-        </div>
+      <div className="container-create" style={{paddingBottom: '10px'}}>
         <span className="span-create">Type</span>
         <div className="line"></div>
-        <div className="container-input">
-          <img src="../../images/image-type.png" className="img-input" style={{ width: 400 }}></img>
+        {/* <div className="container-input" style={{padding: '0px auto'}}> */}
+          <img src="../../images/image-type.png" className="img-input" style={{ width: 400, margin: '0px auto'}}></img>
           
-        </div>
+        {/* </div> */}
 
 
 
          <span className="span-create">Upload Images</span>
         <div className="line"></div>
-        <div className="container-input">
+        {/* <div className="container-input"> */}
           
-          <img src="../../images/upload-img.png" className="img-input"></img>
-        </div>
+          <img src="../../images/upload-img.png" className="img-input" style={{margin: '0px auto'}}></img>
+        {/* </div> */}
 
 
         
          <span className="span-create">Choices</span>
         <div className="line"></div>
-        <div className="container-input">
-          <input type="text" placeholder="Search by Name" className="input-text"></input>
-          <button  className="button-create" style={{ height: 50 }}>search</button>
+        <div>
+            <input type="text" placeholder="Search by Name" className="input-text"></input>
+            <button  className="button-create" style={{ height: 50}}>search</button>
         </div>
 
         <div className="container-button-button">

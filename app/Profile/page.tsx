@@ -3,70 +3,37 @@ import Navbar from "../navbar";
 export default function HistoryPage() {
   return (
     <div>
-      <Navbar />
-      <div className="container-text">
-        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>User</h1>
-        <div className="menu-sort">
-          <span style={{ color: '#BC4126'}}>Latest</span> |
-          <span> Oldest</span> |
-          <span> Random</span>
-        </div>
-      </div>
-      <div className="container">
-        <div className="card">
+    <Navbar />
+        <div className="container">
+            <div style={{marginLeft: '75px'}}>
+                <h1 style={{ fontSize: '35px', fontWeight: 'bold', paddingBottom: '20px'}}>User Profile</h1>
+                <div>
+                  <h1 style={{paddingBottom: '10px'}}>Email</h1>
+                    <input type="Email" placeholder="Jonhdoe@placeholder.com" className="input-text" style={{minWidth: 'fill'}}></input>
+                    <button  className="button-comfirm" style={{float: 'right'}}>Verify Email</button>
+                </div>
+                <div>
+                  <h1 style={{paddingBottom: '10px', margin: 'auto'}}>Name</h1>
+                  <input type="text" placeholder="Your name here" className="input-text" style={{minWidth: '750px'}}></input><br />
+                  <button  className="button-comfirm" style={{float: 'right'}}>Save Username</button>
+                </div><br /><br /><br />
 
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
-                restaurant
-              </p>
+                <div>
+                  <h1 style={{paddingBottom: '10px', margin: 'auto'}}>Change password</h1>
+                  <input type="text" placeholder="New password here" className="input-text" style={{width: '750px'}}></input><br />
+                  <button  className="button-comfirm" style={{float: 'right'}}>Save Password</button>
+                </div><br /><br /><br />
+
+
             </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-            
-          </div>
-      </div>
 
-
-
-      <div className="container-text">
-        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>Play History</h1>
-        <div className="menu-sort">
-          <span style={{ color: '#BC4126'}}>Latest</span> |
-          <span> Oldest</span> |
-          <span> Random</span>
-        </div>
-      </div>
-      <div className="container">
-        <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
+            <div style={{margin: 'auto'}}>
+              <h1 style={{paddingBottom: '10px'}}>Profile image</h1>
+              <img src="../../images/image-type.png" className="img-input" style={{ width: 400,height: 'auto', margin: '0px auto'}}></img>
             </div>
             
-          </div>
-      </div>
+        </div>
+
     </div>
   );
 }
