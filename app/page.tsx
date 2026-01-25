@@ -13,27 +13,6 @@ export default function Home() {
             <div className="card-header">
               <p>restaurant</p>
               <p className=" p-user">
-                <img src ="#" className="img-card-header">
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-            
-          </div>
-
-          <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
                 <img src ="#" className="img-card-header"/>
                 restaurant
               </p>
@@ -70,6 +49,28 @@ export default function Home() {
             
           </div>
 
+          <div className="card">
+
+            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
+            <div className="card-header">
+              <p>restaurant</p>
+              <p className=" p-user">
+                <img src ="#" className="img-card-header"/>
+                <image> </image>
+                restaurant
+              </p>
+            </div>
+            <div className="card-body">
+              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                A la carte restaurant
+              </p>
+              <p style={{opacity: 0.5}}>
+                Architect & Engineer
+              </p>
+            </div>
+            
+          </div>
+
 
           <div className="card">
 
@@ -119,7 +120,7 @@ export default function Home() {
             <div className="card-header">
               <p>restaurant</p>
               <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
+                <img src="#" className="img-card-header"/>
                 restaurant
               </p>
             </div>
