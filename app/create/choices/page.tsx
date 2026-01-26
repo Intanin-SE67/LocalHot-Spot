@@ -21,16 +21,16 @@ export default function ChoicesPage() {
 
 
       <div className="container-create" style={{paddingBottom: '10px'}}>
-        <span className="span-create">Type</span>
+        <p className="p-create">Type</p>
         <div className="line"></div>
         {/* <div className="container-input" style={{padding: '0px auto'}}> */}
           <img src="../../images/image-type.png" className="img-input" style={{ width: 400, margin: '0px auto'}}></img>
           
-        {/* </div> */}
+        {/* </div} */}
 
 
 
-         <span className="span-create">Upload Images</span>
+         <p className="p-create">Upload Images</p>
         <div className="line"></div>
         {/* <div className="container-input"> */}
           
@@ -39,11 +39,16 @@ export default function ChoicesPage() {
 
 
         
-         <span className="span-create">Choices</span>
+         <p className="p-create">Choices</p>
         <div className="line"></div>
         <div>
-            <input type="text" placeholder="Search by Name" className="input-text"></input>
+            <input type="text" placeholder="Search by Name" className="input-text" style={{width: 'auto',minWidth: '600px',height: '50px'}}></input>
             <button  className="button-create" style={{ height: 50}}>search</button>
+            <select className="input-text" style={{width: '200px', height: '50px', marginLeft: '10px',textAlign: 'center'}}>
+              <option value="">----- Select sort -----</option>
+              <option value="Public">Sort by Name A-Z</option>
+              <option value="Public">Sort by Name Z-A</option>
+            </select>
         </div>
 
         <div className="container-button-button">

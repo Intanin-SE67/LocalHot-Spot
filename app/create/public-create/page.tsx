@@ -34,12 +34,8 @@ export default function PublicCreatePage() {
 
 
       <div className="container-create">
-        <div>
-          
-        </div>
-        <span className="span-create">Language</span>
+        <p className="p-create">Language</p>
         <div className="line"></div>
-        <div className="container-input">
           
           <select className="input-text" id="language" value={language} onChange={(e) => setLanguage(e.target.value)}>
             <option value="">--- Select Language ---</option>
@@ -47,13 +43,11 @@ export default function PublicCreatePage() {
             <option value="Thai">ไทย</option>
           </select>
           
-        </div>
 
 
 
-         <span className="span-create">Visibility</span>
+        <p className="p-create">Visibility</p>
         <div className="line"></div>
-        <div className="container-input">
           
           <select className="input-text" id="visibility" value={visibility} onChange={(e) => setVisibility(e.target.value)}>
             <option value="">--- Select Visibility ---</option>
@@ -62,13 +56,10 @@ export default function PublicCreatePage() {
             <option value="Closed">Closed</option>
           </select>
 
-        </div>
 
 
-        
-         <span className="span-create">Category</span>
+        <p className="p-create">Category</p>
         <div className="line"></div>
-        <div className="container-input">
 
             <select className="input-text" id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
                 <option value="">--- Select Category ---</option>
@@ -78,7 +69,6 @@ export default function PublicCreatePage() {
                 <option value="Other">Other</option>
             </select>
 
-        </div>
 
         <div className="container-button-button">
             <button onClick={() => router.push("/create/choices")} className="button-create">&lt;Choices</button>

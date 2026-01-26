@@ -73,20 +73,24 @@ export default function PlayPage() {
                 </tr>
               </tbody>
             </table>
+            <div style={{textAlign:'center', margin:'0px auto' ,paddingTop:'15px'}}>
+              <button id="showmoreBtn" className="button-create" style={{width:'150px'}}>Show more</button>
+            </div>
+            
           </div>
         </div> 
 
         {/* ---------------- Right ---------------- */}
         <div className="container-text right-column" style={{gap: '5px', alignItems:'center'}}>
-          <div style={{width:'75%',gap:'30px',display:'flex',flexDirection:'column'}}>
+          <div style={{width:'75%',gap:'30px',display:'flex',flexDirection:'column',alignItems:'center'}}>
             <img src="../../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card-play"/>
-            <button  className="button-create" style={{width:'100%',height:'90px'}}>
+            <button  className="button-create" style={{maxWidth:'960px',width:'90%',height:'90px'}}>
               <p style={{fontSize:'40px'}}>Play</p>
             </button>
           </div>
           
-          <div style={{marginTop:'150px',width:'75%'}}>
-            <div style={{display:'flex', marginBottom:'30px', gap:'50px', alignItems:'center',fontSize:'20px'}}>
+          <div style={{marginTop:'150px',width:'75%',display:'flex',flexDirection:'column',alignItems:'center'}}>
+            <div style={{display:'flex', marginBottom:'30px', gap:'50px', alignItems:'center',fontSize:'20px',width:'80%'}}>
               <p style={{width:'150px'}}>Nickname</p>
               <input type="text" placeholder="Add Your Nickname" className="input-text" style={{width:'450px'}}></input>
               <p style={{display:'flex',gap:'10px'}}>
@@ -94,20 +98,20 @@ export default function PlayPage() {
                 <span>Anonymous</span>
               </p>
             </div>
-            <div style={{display:'flex', marginBottom:'30px', gap:'50px', alignItems:'center',fontSize:'20px'}}>
+            <div style={{display:'flex', marginBottom:'30px', gap:'50px', alignItems:'center',fontSize:'20px',width:'80%'}}>
               <p style={{width:'150px'}}>Your Comments</p>
               <input type="text" placeholder="Add Your Comments" className="input-text" style={{width:'450px'}}></input>
             </div>
 
-            <div style={{textAlign:'right',paddingRight:'10px'}}>
+            <div style={{textAlign:'right',paddingRight:'10px',width:'80%'}}>
               <button className="button-create" style={{width:'100px', height:'50px'}}>Comment</button>
             </div>
             
           </div>
 
-          <div style={{marginTop:'80px',width:'75%'}}>
+          <div style={{marginTop:'80px',width:'75%',display:'flex',flexDirection:'column',alignItems:'center'}}>
             <h2 style={{fontSize:'25px', fontWeight:'bold', marginBottom:'25px'}}>Comments (31)</h2>
-            <div style={{ alignItems:'center', gap:'10px'}}>
+            <div style={{ alignItems:'center', gap:'10px',width:'80%'}}>
               <div style={{display:'flex',alignItems:'center',gap:'10px', marginBottom:'15px',justifyContent:'space-between'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
                    <img src ="#" className="img-card-header" style={{width:'30px',height:'30px'}}/>

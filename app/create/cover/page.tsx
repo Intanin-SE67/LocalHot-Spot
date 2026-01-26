@@ -34,32 +34,20 @@ export default function CoverPage() {
 
 
       <div className="container-create">
-        <div>
-          
-        </div>
-        <span className="span-create">Title</span>
+        <p className="p-create">Title</p>
         <div className="line"></div>
-        <div className="container-input">
-          
-          <input type="text" placeholder="Tile" className="input-text" value={title} onChange={(e) => setTitle(e.target.value)}></input>
-        </div>
+        <input type="text" placeholder="Tile" className="input-text" value={title} onChange={(e) => setTitle(e.target.value)}></input>
 
 
-
-         <span className="span-create">Description</span>
+        <p className="p-create">Description</p>
         <div className="line"></div>
-        <div className="container-input">
-          
-          <textarea placeholder="Description" className="input-area" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
-        </div>
-
+        <textarea placeholder="Description" className="input-area" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
 
         
-         <span className="span-create">Cover Image</span>
+        <p className="p-create">Cover Image</p>
         <div className="line"></div>
-        <div className="container-input">
-          <img src="#" className="img-input"></img>
-        </div>
+        <img src="#" className="img-input"></img>
+
 
         <div className="container-button">
           <button onClick={handleNext} className="button-create">Choices&gt;</button>
