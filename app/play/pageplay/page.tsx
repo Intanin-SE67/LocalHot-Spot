@@ -9,19 +9,14 @@ import { ThumbsUp } from 'lucide-react';
 import { CornerDownRight } from 'lucide-react';
 
 export default function PlayPage() {
-  const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+  const [isOpen, setIsOpen] = useState(false);
 
-  const isFormComplete = title.trim() !== "" && description.trim() !== "";
-  
-  const handleNext = () => {
-    if (!isFormComplete) {
-        alert("Please fill in all fields.");
-        return;
-    }
-    router.push("/create/choices");
-  };
+  /*const handleStart = () => {
+    console.log("Start Play");
+    setIsOpen(false);
+  };*/
 
   return (
     <div>
@@ -84,7 +79,7 @@ export default function PlayPage() {
         <div className="container-text right-column" style={{gap: '5px', alignItems:'center'}}>
           <div style={{width:'75%',gap:'30px',display:'flex',flexDirection:'column',alignItems:'center'}}>
             <img src="../../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card-play"/>
-            <button  className="button-create" style={{maxWidth:'960px',width:'90%',height:'90px'}}>
+            <button onClick={handleOpen} className="button-create" style={{maxWidth:'960px',width:'90%',height:'90px'}}>
               <p style={{fontSize:'40px'}}>Play</p>
             </button>
           </div>
@@ -138,11 +133,30 @@ export default function PlayPage() {
         </div>
       </div>
 
+      {/* ---------------- Modal Play ---------------- */}
       
-      
-      
+      {isOpen && (
+        <div className="model-play" onClick={handleClose}>
+            <div className="model-play-content" onClick={(e) => e.stopPropagation()}>
+              <div style={{width:'80%',maxWidth:'900px',display:'flex',justifyContent:'left',marginTop:'10px',marginBottom:'25px'}}>
+                <p style={{fontSize:'35px'}}>No. of Choices</p>
+              </div>
+              
+              <select className="input-text" id="category" style={{backgroundColor:'#595959',width:'80%',maxWidth:'900px', marginBottom:'40px'}} >
+                <option value="">---- Select Round ----</option>
+                <option value="Restaurants">8 Round</option>
+                <option value="Tourist-Attractions">16 Round</option>
+                <option value="Convenience-Stops">32 Round</option>
+                <option value="Other">64 Round</option>
+              </select>
+              
+              <button onClick={handleOpen} className="button-create" style={{maxWidth:'500px',width:'70%',height:'60px', margin:'20px',borderRadius:'20px'}}>
+                <p style={{fontSize:'40px'}}>Start</p>
+              </button>
+            </div>
+          </div>
+      )}
 
-     
 
 
       
