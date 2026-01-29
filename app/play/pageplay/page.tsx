@@ -9,14 +9,14 @@ import { ThumbsUp } from 'lucide-react';
 import { CornerDownRight } from 'lucide-react';
 
 export default function PlayPage() {
+  const router = useRouter();
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
   const [isOpen, setIsOpen] = useState(false);
 
-  /*const handleStart = () => {
-    console.log("Start Play");
-    setIsOpen(false);
-  };*/
+  const handleNext = () => {
+    router.push("/play/startplay");
+  };
 
   return (
     <div>
@@ -106,6 +106,7 @@ export default function PlayPage() {
 
           <div style={{marginTop:'80px',width:'75%',display:'flex',flexDirection:'column',alignItems:'center'}}>
             <h2 style={{fontSize:'25px', fontWeight:'bold', marginBottom:'25px'}}>Comments (31)</h2>
+
             <div style={{ alignItems:'center', gap:'10px',width:'80%'}}>
               <div style={{display:'flex',alignItems:'center',gap:'10px', marginBottom:'15px',justifyContent:'space-between'}}>
                 <div style={{display:'flex',alignItems:'center',gap:'10px'}}>
@@ -150,7 +151,7 @@ export default function PlayPage() {
                 <option value="Other">64 Round</option>
               </select>
               
-              <button onClick={handleOpen} className="button-create" style={{maxWidth:'500px',width:'70%',height:'60px', margin:'20px',borderRadius:'20px'}}>
+              <button onClick={handleNext} className="button-create" style={{maxWidth:'500px',width:'70%',height:'60px', margin:'20px',borderRadius:'20px'}}>
                 <p style={{fontSize:'40px'}}>Start</p>
               </button>
             </div>
