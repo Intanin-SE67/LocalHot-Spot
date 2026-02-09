@@ -1,144 +1,46 @@
 import Navbar from "./navbar";
+import { prisma } from "@/lib/prisma";
 
-export default function Home() {
+export default async function Home() {
+  const restaurants = await prisma.restaurant.findMany();
   return (
     <>
       <Navbar />
       <main>
         <div className="card-container">
 
-          <div className="card">
 
-            <a href="./play/pageplay">
-              <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-              <div className="card-header">
-                <p>restaurant</p>
-                <p className=" p-user">
-                  <img src ="#" className="img-card-header"/>
-                  restaurant
-                </p>
+          {restaurants.map((item) =>(
+              <div className="card" key={item.id}>
+                <a href={item.link ?? "/images/no-image.png"}>
+                  <img
+                    src={item.imageUrl ?? "../"}
+                    alt={item.name}
+                    className="img-card"
+                    style={{objectFit:'cover'}}
+                  />
+
+                  <div className="card-header">
+                    <p>{item.category}</p>
+                    <div className="p-user">
+                      <img src ="#" className="img-card-header"/>
+                      <span>{item.category}</span>
+                    </div>
+                  </div>
+
+                  <div className="card-body">
+                    <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                      {item.name}
+                    </p>
+                    <p style={{opacity: 0.5}}>
+                      {item.description}
+                    </p>
+                  </div>
+                </a>
               </div>
-              <div className="card-body">
-                <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                  A la carte restaurant
-                </p>
-                <p style={{opacity: 0.5}}>
-                  Architect & Engineer
-                </p>
-              </div>
+            ))}
 
-            </a>
-            
-          </div>
-
-          <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-            
-          </div>
-
-          <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
-                <image> </image>
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-            
-          </div>
-
-
-          <div className="card">
-            <a href="/play/play-page">
-              <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-              <div className="card-header">
-                <p>restaurant</p>
-                <p className=" p-user">
-                  <img src ="#" className="img-card-header"/>
-                  restaurant
-                </p>
-              </div>
-              <div className="card-body">
-                <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                  A la carte restaurant
-                </p>
-                <p style={{opacity: 0.5}}>
-                  Architect & Engineer
-                </p>
-              </div>
-
-            </a>
-            
-          </div>
-
-          <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-
-          </div>
-
-          <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src="#" className="img-card-header"/>
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-
-          </div>
+         
 
 
         </div>

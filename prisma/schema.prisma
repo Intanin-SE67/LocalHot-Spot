@@ -1,0 +1,18 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../src/generated/prisma"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:../dev.db"
+}
+
+model Restaurant {
+  id          Int     @id @default(autoincrement())
+  name        String
+  category    String?
+  description String?
+  imageUrl    String?
+  link        String?
+}

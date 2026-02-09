@@ -251,10 +251,12 @@ tr {
     display: flex;
 }
 
+
 /*----------------------- Image Styles ------------------*/
 .img-card {
     width: 100%;
-    height: auto;
+    height: 70%
+
 }
 
 .img-card-header {
