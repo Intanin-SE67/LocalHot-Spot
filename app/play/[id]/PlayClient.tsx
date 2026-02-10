@@ -1,26 +1,22 @@
-"use client";
-import { useRouter } from "next/navigation";
-import Navbar from "../../navbar";
+"use client"
+import type { Restaurant } from "@/generated/prisma";
 import { useState } from "react";
-import { Play } from 'lucide-react';
-import { title } from "process";
-import { Bookmark } from 'lucide-react';
-import { ThumbsUp } from 'lucide-react';
-import { CornerDownRight } from 'lucide-react';
+import { useRouter } from "next/navigation";
+import {Play, Bookmark, ThumbsUp, CornerDownRight } from "lucide-react";
 
-export default function PlayPage() {
-  const router = useRouter();
-  const handleOpen = () => setIsOpen(true);
-  const handleClose = () => setIsOpen(false);
-  const [isOpen, setIsOpen] = useState(false);
+export default function PlayClient({ restaurant }: { restaurant: Restaurant }){
+      const router = useRouter();
+      const handleOpen = () => setIsOpen(true);
+      const handleClose = () => setIsOpen(false);
+      const [isOpen, setIsOpen] = useState(false);
 
-  const handleNext = () => {
+      const handleNext = () => {
     router.push("/play/startplay");
   };
 
-  return (
+
+  return(
     <div>
-      <Navbar />
       <div className="container-play">
         {/* ---------------- Left ---------------- */}
         <div className="container-text left-column" style={{gap: '5px'}}>
@@ -29,7 +25,7 @@ export default function PlayPage() {
             <p>150+</p>
           </div>
           
-          <h1 style={{ fontSize: '35px', fontWeight: 'bold' ,marginBottom: '25px'}}> A la carte restaurant</h1>
+          <h1 style={{ fontSize: '35px', fontWeight: 'bold' ,marginBottom: '25px'}}> {restaurant.name}</h1>
           <p>Top subscribe from 28/12/2025</p>
           <div style={{display: 'flex' ,gap:'10px',marginTop: '15px'}}>
             <button className="button-play"><Bookmark size={20}/>Bookmark</button>
@@ -78,7 +74,10 @@ export default function PlayPage() {
         {/* ---------------- Right ---------------- */}
         <div className="container-text right-column" style={{gap: '5px', alignItems:'center'}}>
           <div style={{width:'75%',gap:'30px',display:'flex',flexDirection:'column',alignItems:'center'}}>
-            <img src="../../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card-play"/>
+            <img 
+              src={restaurant.imageUrl ?? "../"} 
+              alt={restaurant.name} 
+              className="img-card-play"/>
             <button onClick={handleOpen} className="button-create" style={{maxWidth:'960px',width:'90%',height:'90px'}}>
               <p style={{fontSize:'40px'}}>Play</p>
             </button>
@@ -134,7 +133,9 @@ export default function PlayPage() {
         </div>
       </div>
 
-      {/* ---------------- Modal Play ---------------- */}
+
+        
+        {/* ---------------- Modal Play ---------------- */}
       
       {isOpen && (
         <div className="model-play" onClick={handleClose}>
@@ -157,10 +158,6 @@ export default function PlayPage() {
             </div>
           </div>
       )}
-
-
-
-      
     </div>
   );
 }

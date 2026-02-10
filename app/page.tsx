@@ -12,7 +12,7 @@ export default async function Home() {
 
           {restaurants.map((item) =>(
               <div className="card" key={item.id}>
-                <a href={item.link ?? "/images/no-image.png"}>
+                <a href={`/play/${item.id}`}>
                   <img
                     src={item.imageUrl ?? "../"}
                     alt={item.name}
