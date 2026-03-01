@@ -6,8 +6,7 @@ import { useCreateStore } from "../store";
 
 export default function CoverPage() {
   const router = useRouter();
-  const { title, description, setData } = useCreateStore();
-
+  const { title, description,coverImage, setData } = useCreateStore();
   const isFormComplete = title.trim() !== "" && description.trim() !== "";
   
   const handleNext = () => {
@@ -15,8 +14,6 @@ export default function CoverPage() {
         alert("Please fill in all fields.");
         return;
     }
-    setData({ title, description });
-
     router.push("/create/choices");
   };
 
@@ -37,12 +34,12 @@ export default function CoverPage() {
       <div className="container-create">
         <p className="p-create">Title</p>
         <div className="line"></div>
-        <input type="text" placeholder="Tile" className="input-text" value={title} onChange={(e) => setTitle(e.target.value)}></input>
+        <input type="text" placeholder="Tile" className="input-text" value={title} onChange={(e) => setData({title: e.target.value})}></input>
 
 
         <p className="p-create">Description</p>
         <div className="line"></div>
-        <textarea placeholder="Description" className="input-area" value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
+        <textarea placeholder="Description" className="input-area" value={description} onChange={(e) => setData({description: e.target.value})}></textarea>
 
         
         <p className="p-create">Cover Image</p>
