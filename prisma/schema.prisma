@@ -16,3 +16,23 @@ model Restaurant {
   imageUrl    String?
   link        String?
 }
+
+model Create {
+  id          Int     @id @default(autoincrement())
+  title       String
+  description String?
+  coverImage  String?
+  language    String?
+  visibility  String?
+  category    String?
+
+  choices     Choice[]
+}
+
+model Choice {
+  id          Int     @id @default(autoincrement())
+  image       String
+
+  createId    Int
+  create      Create @relation(fields: [createId], references: [id])
+}

@@ -2,12 +2,11 @@
 import { useRouter } from "next/navigation";
 import Navbar from "../../navbar";
 import { useState } from "react";
-import { title } from "process";
+import { useCreateStore } from "../store";
 
 export default function CoverPage() {
   const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
+  const { title, description, setData } = useCreateStore();
 
   const isFormComplete = title.trim() !== "" && description.trim() !== "";
   
@@ -16,6 +15,8 @@ export default function CoverPage() {
         alert("Please fill in all fields.");
         return;
     }
+    setData({ title, description });
+
     router.push("/create/choices");
   };
 

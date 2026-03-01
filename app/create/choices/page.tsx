@@ -1,11 +1,29 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Navbar from "../../navbar";
-import { Weight } from "lucide-react";
+
+import { useCreateStore } from "../store";
 
 
 export default function ChoicesPage() {
   const router = useRouter();
+  const { choices, setData } = useCreateStore();
+  
+
+  {/*ฟังชันการอัพโหลดไฟล์รูป และเก็บไว้ใน store*/ }
+  const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const files = e.target.files;
+    if (!files) return;
+
+    const newChoices = Array.from(files).map((file) => ({
+      id: crypto.randomUUID(),
+      image: URL.createObjectURL(file),
+      name: file.name,
+    }));
+
+    setData({ choices: [...choices, ...newChoices] });
+  };
+
   return (
     <div>
       <Navbar />
@@ -24,19 +42,31 @@ export default function ChoicesPage() {
         <p className="p-create">Type</p>
         <div className="line"></div>
         {/* <div className="container-input" style={{padding: '0px auto'}}> */}
-          <img src="../../images/image-type.png" className="img-input" style={{ width: 400, margin: '0px auto'}}></img>
+          <img src="../../images/image-type.png" className="img-input" style={{ width: 400, margin: '0px auto'}}/>
+
+          
+          
           
         {/* </div} */}
 
 
-
+        {/*-------------- เทสเทส อยู่รหว่างการเรียนรู้ -------------------*/}
          <p className="p-create">Upload Images</p>
         <div className="line"></div>
         {/* <div className="container-input"> */}
+        <label style={{cursor:"pointer",display:"block",textAlign:"center"} }>
+            <img src="../../images/upload-img.png" className="img-input" style={{margin: '0px auto'}}></img>
           
-          <img src="../../images/upload-img.png" className="img-input" style={{margin: '0px auto'}}></img>
+            <input
+              type="file"
+              multiple
+              accept="image/*"
+              onChange={handleUpload}
+              hidden
+            />
+          </label>  
         {/* </div> */}
-
+        {/*-------------- เทสเทส อยู่รหว่างการเรียนรู้ -------------------*/}
 
         
          <p className="p-create">Choices</p>
@@ -50,6 +80,31 @@ export default function ChoicesPage() {
               <option value="Public">Sort by Name Z-A</option>
             </select>
         </div>
+        
+        {/*-------------- เทสเทส อยู่รหว่างการเรียนรู้ -------------------*/}
+        <div className="choices-grid">
+          {choices.map((choice: any) => (
+            <div key={choice.id} className="choice-card">
+              <img src={choice.image} className="choice-image" />
+
+              <div className="choice-footer">
+                <p>{choice.name}</p>
+
+                <button
+                  onClick={() =>
+                    setData({
+                      choices: choices.filter((c) => c.id !== choice.id),
+                    })
+                  }
+                >
+                  ❌
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
+        {/*-------------- เทสเทส สำหรับทดสอบและเรียนรู้เท่านั้น!!! -------------------*/}
+
 
         <div className="container-button-button">
             <button onClick={() => router.push("/create/cover")} className="button-create">&lt;cover</button>
