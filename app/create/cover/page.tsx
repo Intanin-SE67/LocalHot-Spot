@@ -3,18 +3,26 @@ import { useRouter } from "next/navigation";
 import Navbar from "../../navbar";
 import { useState } from "react";
 import { useCreateStore } from "../store";
+import { text } from "stream/consumers";
 
 export default function CoverPage() {
   const router = useRouter();
   const { title, description,coverImage, setData } = useCreateStore();
   const isFormComplete = title.trim() !== "" && description.trim() !== "";
-  
+ {/*สำหรับถ้าไม่เติมจะไปหน้าถัดไปไม่ได้ */} 
   const handleNext = () => {
     if (!isFormComplete) {
         alert("Please fill in all fields.");
         return;
     }
     router.push("/create/choices");
+  };
+  {/*สำหรับการสร้างเพิ่มรูปปกtitle */}
+  const handleCoverUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const file = event.target.files?.[0];
+    if (!file) return;
+    const imageUrl = URL.createObjectURL(file);
+    setData({ coverImage: imageUrl });
   };
 
   return (
@@ -44,7 +52,22 @@ export default function CoverPage() {
         
         <p className="p-create">Cover Image</p>
         <div className="line"></div>
-        <img src="#" className="img-input"></img>
+
+        {/*------------------------- สำหรับการสร้างเพิ่มรูปปกtitle -------------------------*/}
+        <label>
+          <input type="file" accept="image/*" onChange={handleCoverUpload} hidden></input>
+          {/*ถ้ามีรูปปกแล้วก็แสดงรูปปก ถ้ายังไม่มีให้แสดงข้อความให้คลิกเพื่ออัพโหลดรูปปก */}
+          {coverImage ? (  
+            <img src={coverImage || "#"} 
+              className="img-input"
+            />
+          ) : (
+            <p className="img-input" style={{display:"flex",alignItems:"center",justifyContent:"center",color:"#888"}}>
+              Click to upload cover image
+            </p>
+          )}
+        </label>
+        {/*------------------------- -------------------------------- -------------------------*/}
 
 
         <div className="container-button">

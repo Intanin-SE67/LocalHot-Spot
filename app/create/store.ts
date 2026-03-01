@@ -10,6 +10,8 @@ type CreateState = {
     title: string;
     description: string;
     coverImage: string;
+    language: string;
+    category: string;
     visibility: string;
     choices: Choice[];
 
@@ -20,6 +22,8 @@ export const useCreateStore = create<CreateState>((set) => ({
   title: "",
   description: "",
   coverImage: "",
+  language: "",
+  category: "",
   visibility: "PRIVATE",
   choices: [],
 

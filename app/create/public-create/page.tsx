@@ -1,22 +1,37 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Navbar from "../../navbar";
-import { Weight } from "lucide-react";
-import { useState } from "react";
+import { use, useState } from "react";
+import { useCreateStore } from "../store";
 
 
 export default function PublicCreatePage() {
   const router = useRouter();
-  const [language, setLanguage] = useState("");
-  const [visibility, setVisibility] = useState("");
-  const [category, setCategory] = useState("");
-
-  const handleNext = () => {
+  const { language, visibility, category, setData } = useCreateStore();
+  const createData = useCreateStore();
+  
+  const handleNext = async () => {
+    const { language, visibility, category } = createData;
+    
+    {/*สำหรับถ้าไม่เติมจะไปหน้าถัดไปไม่ได้ */}
     if (!language || !visibility || !category) {
         alert("Please fill in all fields.");
         return;
     }
-    router.push("../history");
+    {/*ส่งข้อมูลทั้งหมดไปยัง API เพื่อบันทึกลงฐานข้อมูล */}
+    const res = await fetch("/api/create", {
+      method: "POST",
+      headers: { 
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(createData),
+    });
+
+    if (!res.ok) {
+      alert("Failed to create worldcup.");
+      return;
+    }
+      router.push("../history");
   };
 
   return (
@@ -37,7 +52,7 @@ export default function PublicCreatePage() {
         <p className="p-create">Language</p>
         <div className="line"></div>
           
-          <select className="input-text" id="language" value={language} onChange={(e) => setLanguage(e.target.value)}>
+          <select className="input-text" id="language" value={language} onChange={(e) => setData({language: e.target.value})}>
             <option value="">--- Select Language ---</option>
             <option value="English">English</option>
             <option value="Thai">ไทย</option>
@@ -49,7 +64,7 @@ export default function PublicCreatePage() {
         <p className="p-create">Visibility</p>
         <div className="line"></div>
           
-          <select className="input-text" id="visibility" value={visibility} onChange={(e) => setVisibility(e.target.value)}>
+          <select className="input-text" id="visibility" value={visibility} onChange={(e) => setData({visibility: e.target.value})}>
             <option value="">--- Select Visibility ---</option>
             <option value="Public">Public</option>
             <option value="Private">Private</option>
@@ -61,7 +76,7 @@ export default function PublicCreatePage() {
         <p className="p-create">Category</p>
         <div className="line"></div>
 
-            <select className="input-text" id="category" value={category} onChange={(e) => setCategory(e.target.value)}>
+            <select className="input-text" id="category" value={category} onChange={(e) => setData({category: e.target.value})}>
                 <option value="">--- Select Category ---</option>
                 <option value="Restaurants">Restaurants</option>
                 <option value="Tourist-Attractions">Tourist Attractions</option>
