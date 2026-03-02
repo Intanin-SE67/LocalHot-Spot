@@ -3,11 +3,13 @@ import { useRouter } from "next/navigation";
 import Navbar from "../../navbar";
 
 import { useCreateStore } from "../store";
+import { useState } from "react";
 
 
 export default function ChoicesPage() {
   const router = useRouter();
   const { choices, setData } = useCreateStore();
+  const [imageFile, setImageFile] = useState<File | null>(null);
   
 
   {/*ฟังชันการอัพโหลดไฟล์รูป และเก็บไว้ใน store*/ }
@@ -19,9 +21,31 @@ export default function ChoicesPage() {
       id: crypto.randomUUID(),
       image: URL.createObjectURL(file),
       name: file.name,
+      file: file,
     }));
 
     setData({ choices: [...choices, ...newChoices] });
+  };
+
+  const handleNext = async () => {
+    const uploadPromises = await Promise.all(
+      choices.map(async (choice: any) => {
+        if (!choice.file) return choice;
+
+        const formData = new FormData();
+        formData.append("file", choice.file);
+
+        const res = await fetch("/api/upload", {
+          method: "POST",
+          body: formData,
+        });
+        const data = await res.json();
+        return { ...choice, image: data.secure_url ,file: undefined};
+      })
+    );
+
+    setData({ choices: uploadPromises });
+    router.push("/create/public-create");
   };
 
   return (
@@ -108,7 +132,7 @@ export default function ChoicesPage() {
 
         <div className="container-button-button">
             <button onClick={() => router.push("/create/cover")} className="button-create">&lt;cover</button>
-          <button onClick={() => router.push("/create/public-create")} className="button-create">Public&gt;</button>
+          <button onClick={handleNext} className="button-create">Public&gt;</button>
         </div>
       </div>
     </div>
