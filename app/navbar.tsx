@@ -25,7 +25,7 @@ export default function Navbar() {
                         </div>
 
                         <div className="nav-item">
-                            <span className="nav-text">Category</span>
+                            <span className="nav-text"><a href=".">Category</a></span>
                         </div>
                     </div>
 
@@ -36,7 +36,13 @@ export default function Navbar() {
                         </div>
 
                         <div className="icon-container">
-                            <CircleUser size={35}/>
+                            <li className='relative group'><a href="#"><CircleUser size={35}/></a>
+                                <ul className='absolute hidden group-hover:block bg-white text-black rounded-md mt-2 py-2 w-48'>
+                                    <li><a href="./Profile" className='block px-4 py-2 hover:bg-gray-200'>Profile</a></li>
+                                    <li><a href="./auth/login" className='block px-4 py-2 hover:bg-gray-200'>Login</a></li>
+                                    <li><a href="#" className='block px-4 py-2 hover:bg-gray-200'>Logout</a></li>
+                                </ul>
+                            </li>
                         </div>
 
                         <div className="select-field">
