@@ -53,8 +53,8 @@ export default function CoverPage() {
     if (!file) return;
 
     setImageFile(file);
-    const imageUrl = URL.createObjectURL(file);
-    setData({ coverImage: imageUrl });
+    const imageUrl = URL.createObjectURL(file); //สร้างpreview Url เช่น blob:http://localhost:3000/1234-5678-90ab-cdef
+    setData({ coverImage: imageUrl }); //เก็บpreview Url ลง store เพื่อแสดงรูปปกที่อัพโหลดทันที
   };
 
   
@@ -86,7 +86,7 @@ export default function CoverPage() {
         <p className="p-create">Cover Image</p>
         <div className="line"></div>
 
-        {/*------------------------- สำหรับการสร้างเพิ่มรูปปกtitle -------------------------*/}
+        {/*------------------------- สำหรับการสร้างเพิ่มรูปปกcover Image -------------------------*/}
         <label>
           <input type="file" accept="image/*" onChange={handleCoverUpload} hidden></input>
           {/*ถ้ามีรูปปกแล้วก็แสดงรูปปก ถ้ายังไม่มีให้แสดงข้อความให้คลิกเพื่ออัพโหลดรูปปก */}

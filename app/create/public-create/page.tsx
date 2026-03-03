@@ -18,7 +18,7 @@ export default function PublicCreatePage() {
     const res = await fetch("/api/create", {
       method: "POST",
       headers: { "Content-Type": "application/json",},
-      body: JSON.stringify(createData),
+      body: JSON.stringify(createData), //แปลงcreateData เป็น JSON string เพื่อส่งไปยัง API
     });
 
     if (!res.ok) {

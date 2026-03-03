@@ -27,7 +27,7 @@ export default function ChoicesPage() {
     setData({ choices: [...choices, ...newChoices] });
   };
 
-  const handleNext = async () => {
+  const handleNext = async () => {//Promise.all จะรอให้ทุก async ใน map เสร็จแล้วรวมค่าที่ return ทั้งหมดเป็น array
     const uploadPromises = await Promise.all(
       choices.map(async (choice: any) => {
         if (!choice.file) return choice;
@@ -74,7 +74,7 @@ export default function ChoicesPage() {
         {/* </div} */}
 
 
-        {/*-------------- เทสเทส อยู่รหว่างการเรียนรู้ -------------------*/}
+        {/*-------------- เทสเทส  -------------------*/}
          <p className="p-create">Upload Images</p>
         <div className="line"></div>
         {/* <div className="container-input"> */}
@@ -90,7 +90,7 @@ export default function ChoicesPage() {
             />
           </label>  
         {/* </div> */}
-        {/*-------------- เทสเทส อยู่รหว่างการเรียนรู้ -------------------*/}
+        {/*-------------- เทสเทส -------------------*/}
 
         
          <p className="p-create">Choices</p>
