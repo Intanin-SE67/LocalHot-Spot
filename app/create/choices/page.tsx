@@ -11,6 +11,9 @@ export default function ChoicesPage() {
   const { choices, setData } = useCreateStore();
   const [imageFile, setImageFile] = useState<File | null>(null);
   
+  const [searchInput, setSearchInput] = useState("");
+  const [search, setSearch] = useState("");
+  const filterredChoices = choices.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()));
 
   {/*ฟังชันการอัพโหลดไฟล์รูป และเก็บไว้ใน store*/ }
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -91,14 +94,19 @@ export default function ChoicesPage() {
             />
           </label>  
         {/* </div> */}
-        {/*-------------- เทสเทส -------------------*/}
+        {/*-------------- ค้นหาที่อัพโหลด -------------------*/}
 
         
          <p className="p-create">Choices</p>
         <div className="line"></div>
         <div>
-            <input type="text" placeholder="Search by Name" className="input-text" style={{width: 'auto',minWidth: '600px',height: '50px'}}></input>
-            <button  className="button-create" style={{ height: 50}}>search</button>
+            <input 
+            type="text"
+            value={searchInput}
+            onChange={(e) => setSearchInput(e.target.value)} 
+            className="input-text" 
+            style={{width: 'auto',minWidth: '600px',height: '50px'}}></input>
+            <button  className="button-create" style={{ height: 50}} onClick={() => setSearch(searchInput)}>search</button>
             <select className="input-text" style={{width: '200px', height: '50px', marginLeft: '10px',textAlign: 'center'}}>
               <option value="">----- Select sort -----</option>
               <option value="Public">Sort by Name A-Z</option>
@@ -108,7 +116,9 @@ export default function ChoicesPage() {
         
         {/*-------------- เทสเทส  -------------------*/}
         <div className="choices-grid">
-          {choices.map((choice: any) => (
+          {choices
+          .filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
+          .map((choice: any) => (
             <div key={choice.id} className="choice-card">
               <img src={choice.image} className="choice-image" />
 
