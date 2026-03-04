@@ -1,14 +1,11 @@
-import Navbar from "./navbar";
 import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
   const restaurants = await prisma.restaurant.findMany();
   return (
-    <>
-      <Navbar />
       <main>
         <div className="card-container">
-
+          
 
           {restaurants.map((item) =>(
               <div className="card" key={item.id}>
@@ -46,7 +43,6 @@ export default async function Home() {
         </div>
         
       </main>
-    </>
   );
 }
 

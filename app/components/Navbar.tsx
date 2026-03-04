@@ -1,14 +1,15 @@
+import React from 'react';
 import { Search } from 'lucide-react';
 import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 
-export default function Navbar() {
+const Navbar = ({ handlesShowModel }: { handlesShowModel: () => void }) => {
     return (
         <div className="main-container">
             <header className="header">
                 <div className="toolbar">
                     <div className="title-section">
-                        <h1 className="main-title"><a href="../">LocalhosT SpoT</a></h1>
+                        <h1 className="main-title"><a href="../">LocalhosT Test page</a></h1>
                     </div>
                     
                     <div className="toolbar-left">
@@ -25,7 +26,9 @@ export default function Navbar() {
                         </div>
 
                         <div className="nav-item">
-                            <span className="nav-text">Category</span>
+                            <button onClick={handlesShowModel} className="nav-text">
+                                Category
+                            </button>
                         </div>
                     </div>
 
