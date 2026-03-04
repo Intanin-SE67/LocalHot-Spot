@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Mail, Key, User } from 'lucide-react';
 import Link from 'next/link';
 

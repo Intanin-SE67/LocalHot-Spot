@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Key, ShieldCheck, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 

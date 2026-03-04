@@ -1,5 +1,4 @@
 
-import React from 'react';
 import { Mail, Key, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 

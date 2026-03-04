@@ -3,13 +3,13 @@ import { Search } from 'lucide-react';
 import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 
-const Navbar = ({ handlesShowModel }: { handlesShowModel: () => void }) => {
+const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
     return (
         <div className="main-container">
             <header className="header">
                 <div className="toolbar">
                     <div className="title-section">
-                        <h1 className="main-title"><a href="../">LocalhosT Test page</a></h1>
+                        <h1 className="main-title"><a href="../">LocalhoT Test page</a></h1>
                     </div>
                     
                     <div className="toolbar-left">
@@ -26,7 +26,7 @@ const Navbar = ({ handlesShowModel }: { handlesShowModel: () => void }) => {
                         </div>
 
                         <div className="nav-item">
-                            <button onClick={handlesShowModel} className="nav-text">
+                            <button onClick={handleShowModel} className="nav-text">
                                 Category
                             </button>
                         </div>
@@ -41,8 +41,8 @@ const Navbar = ({ handlesShowModel }: { handlesShowModel: () => void }) => {
                         <div className="icon-container">
                             <li className='relative group'><a href="#"><CircleUser size={35}/></a>
                                 <ul className='absolute hidden group-hover:block bg-white text-black rounded-md mt-2 py-2 w-48'>
-                                    <li><a href="./Profile" className='block px-4 py-2 hover:bg-gray-200'>Profile</a></li>
-                                    <li><a href="./auth/login" className='block px-4 py-2 hover:bg-gray-200'>Login</a></li>
+                                    <li><a href="../Profile" className='block px-4 py-2 hover:bg-gray-200'>Profile</a></li>
+                                    <li><a href="../auth/login" className='block px-4 py-2 hover:bg-gray-200'>Login</a></li>
                                     <li><a href="#" className='block px-4 py-2 hover:bg-gray-200'>Logout</a></li>
                                 </ul>
                             </li>
@@ -67,3 +67,5 @@ const Navbar = ({ handlesShowModel }: { handlesShowModel: () => void }) => {
         </div>
     );
 };
+
+export default Navbar;

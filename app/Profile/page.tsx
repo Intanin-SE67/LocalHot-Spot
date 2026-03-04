@@ -1,9 +1,7 @@
-import Navbar from "../navbar";
 
 export default function HistoryPage() {
   return (
     <div>
-    <Navbar />
         <div className="container">
             <div style={{marginLeft: '75px'}}>
                 <h1 style={{ fontSize: '35px', fontWeight: 'bold', paddingBottom: '20px'}}>User Profile</h1>
