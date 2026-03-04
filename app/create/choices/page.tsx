@@ -15,6 +15,8 @@ export default function ChoicesPage() {
   const [search, setSearch] = useState("");
   const filterredChoices = choices.filter((c) => c.name.toLowerCase().includes(search.toLowerCase()));
 
+  const [sortimg, setSortimg] = useState("");
+
   {/*ฟังชันการอัพโหลดไฟล์รูป และเก็บไว้ใน store*/ }
   const handleUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
@@ -107,60 +109,68 @@ export default function ChoicesPage() {
             className="input-text" 
             style={{width: 'auto',minWidth: '600px',height: '50px'}}></input>
             <button  className="button-create" style={{ height: 50}} onClick={() => setSearch(searchInput)}>search</button>
-            <select className="input-text" style={{width: '200px', height: '50px', marginLeft: '10px',textAlign: 'center'}}>
+            <select className="input-text" style={{width: '200px', height: '50px', marginLeft: '10px',textAlign: 'center'}} 
+            value={sortimg} 
+            onChange={(e) => setSortimg(e.target.value)}>
               <option value="">----- Select sort -----</option>
-              <option value="Public">Sort by Name A-Z</option>
-              <option value="Public">Sort by Name Z-A</option>
+              <option value="asc">Sort by Name A-Z</option>
+              <option value="desc">Sort by Name Z-A</option>
             </select>
         </div>
         
         {/*-------------- เทสเทส  -------------------*/}
-        <div className="choices-grid">
-          {choices
-          .filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
-          .map((choice: any) => (
-            <div key={choice.id} className="choice-card">
-              <img src={choice.image} className="choice-image" />
-
-              <div className="choice-footer">
-                <p>{choice.name}</p>
-
-                <button
-                  onClick={() =>
-                    setData({
-                      choices: choices.filter((c) => c.id !== choice.id),
-                    })
-                  }
-                >
-                  ❌
-                </button>
-                <input
-                  type="text"
-                  placeholder="Name"
-                  value={choice.name}
-                  onChange={(e) =>
-                    setData({
-                      choices: choices.map((c) =>
-                        c.id === choice.id ? { ...c, name: e.target.value } : c
-                      ),
-                    })
-                  }
-                />
-                <input
-                  type="text"
-                  placeholder="External URL"
-                  value={choice.externalUrl}
-                  onChange={(e) =>
-                    setData({
-                      choices: choices.map((c) =>
-                        c.id === choice.id ? { ...c, externalUrl: e.target.value } : c
-                      ),
-                    })
-                  }
-                />
+        <div style={{display:"flex", justifyContent:"center"}}>
+          <div className="choices-grid">
+            {choices
+            .filter((c) => c.name.toLowerCase().includes(search.toLowerCase()))
+            .sort((a, b) => {
+              if (sortimg === "asc") {
+                return a.name.localeCompare(b.name);
+              }
+              if (sortimg === "desc") {
+                return b.name.localeCompare(a.name);
+              }
+              return 0;
+            })
+            .map((choice: any) => (
+              <div key={choice.id} className="choice-card">
+                
+                <div className="choice-header">
+                  <img src={choice.image} className="choice-image" />
+                  <button onClick={() =>setData({choices: choices.filter((c) => c.id !== choice.id),})} style={{fontSize:"18px"}}>
+                    ❌
+                  </button>
+                </div>
+                  
+                <div className="choice-footer">
+                  <input
+                    type="text"
+                    placeholder="Name"
+                    value={choice.name}
+                    onChange={(e) =>
+                      setData({
+                        choices: choices.map((c) =>
+                          c.id === choice.id ? { ...c, name: e.target.value } : c
+                        ),
+                      })
+                    }
+                  />
+                  <input
+                    type="text"
+                    placeholder="External URL"
+                    value={choice.externalUrl}
+                    onChange={(e) =>
+                      setData({
+                        choices: choices.map((c) =>
+                          c.id === choice.id ? { ...c, externalUrl: e.target.value } : c
+                        ),
+                      })
+                    }
+                  />
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
         {/*-------------- เทสเทส สำหรับทดสอบและเรียนรู้เท่านั้น!!! -------------------*/}
 
