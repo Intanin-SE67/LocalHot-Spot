@@ -14,14 +14,14 @@ export default function ForgetPasswordForm() {
         
         {/* Title: FORGET PASSWORD (ตามรูป) */}
         <div className="relative text-center">
-          <h1 className="text-[#bc13fe] text-6xl md:text-8xl font-[1000] italic uppercase tracking-tighter leading-none drop-shadow-[0_0_15px_rgba(188,19,254,0.5)]">
+          <h1 className="text-[#bc13fe] text-5xl md:text-7xl font-[1000] italic uppercase tracking-tighter leading-none drop-shadow-[0_0_15px_rgba(188,19,254,0.5)]">
             FORGET PASSWORD
           </h1>
           <div className="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#bc13fe] to-transparent"></div>
         </div>
 
         {/* Description (ตามรูป) */}
-        <p className="text-white text-xl md:text-2xl font-medium text-center max-w-[560px] leading-relaxed opacity-90">
+        <p className="text-white text-xl md:text-xl font-medium text-center max-w-[560px] leading-relaxed opacity-90">
           Don&apos;t worry! Just fill in your email and we&apos;ll send you
           <br className="hidden md:block" />
           a link to reset your password.
@@ -31,7 +31,7 @@ export default function ForgetPasswordForm() {
           
           {/* Email Section (ตามรูป) */}
           <div className="group flex flex-col gap-4">
-            <label className="text-white text-3xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
+            <label className="text-white text-2xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
               Email
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
@@ -48,7 +48,7 @@ export default function ForgetPasswordForm() {
           <div className="mt-6 flex flex-col items-center gap-10">
             <button
               type="submit"
-              className="group relative w-full h-20 bg-[#c2410c] hover:bg-[#ea580c] text-white rounded-3xl text-4xl md:text-5xl font-[1000] uppercase tracking-tighter transition-all active:scale-[0.97] overflow-hidden flex items-center justify-center shadow-[0_20px_50px_rgba(194,65,12,0.3)]"
+              className="group relative w-full h-20 bg-[#c2410c] hover:bg-[#ea580c] text-white rounded-3xl text-4xl font-[1000] uppercase tracking-tighter transition-all active:scale-[0.97] overflow-hidden flex items-center justify-center shadow-[0_20px_50px_rgba(194,65,12,0.3)]"
             >
               <span className="relative z-10">FORGET PASSWORD</span>
               
