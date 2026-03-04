@@ -16,6 +16,8 @@ export async function POST(req: Request) {
 
       choices: {
         create: body.choices.map((c: any) => ({
+          name: c.name,
+          externalUrl: c.externalUrl,
           image: c.image
         }))
       }

@@ -20,7 +20,8 @@ export default function ChoicesPage() {
     const newChoices = Array.from(files).map((file) => ({
       id: crypto.randomUUID(),
       image: URL.createObjectURL(file),
-      name: file.name,
+      name: file.name.replace(/\.[^/.]+$/, ""), //เอานามสกุลออกจากชื่อไฟล์
+      externalUrl: "",
       file: file,
     }));
 
@@ -105,7 +106,7 @@ export default function ChoicesPage() {
             </select>
         </div>
         
-        {/*-------------- เทสเทส อยู่รหว่างการเรียนรู้ -------------------*/}
+        {/*-------------- เทสเทส  -------------------*/}
         <div className="choices-grid">
           {choices.map((choice: any) => (
             <div key={choice.id} className="choice-card">
@@ -123,6 +124,30 @@ export default function ChoicesPage() {
                 >
                   ❌
                 </button>
+                <input
+                  type="text"
+                  placeholder="Name"
+                  value={choice.name}
+                  onChange={(e) =>
+                    setData({
+                      choices: choices.map((c) =>
+                        c.id === choice.id ? { ...c, name: e.target.value } : c
+                      ),
+                    })
+                  }
+                />
+                <input
+                  type="text"
+                  placeholder="External URL"
+                  value={choice.externalUrl}
+                  onChange={(e) =>
+                    setData({
+                      choices: choices.map((c) =>
+                        c.id === choice.id ? { ...c, externalUrl: e.target.value } : c
+                      ),
+                    })
+                  }
+                />
               </div>
             </div>
           ))}
