@@ -1,15 +1,16 @@
 "use client";
 import { useRouter } from "next/navigation";
 import Navbar from "../../navbar";
-
 import { useCreateStore } from "../store";
 import { useState } from "react";
-
+import { Pen } from 'lucide-react';
+import { Trash2 } from 'lucide-react';
 
 export default function ChoicesPage() {
   const router = useRouter();
   const { choices, setData } = useCreateStore();
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [edittext, setEditText] = useState(false);
   
   const [searchInput, setSearchInput] = useState("");
   const [search, setSearch] = useState("");
@@ -137,9 +138,15 @@ export default function ChoicesPage() {
                 
                 <div className="choice-header">
                   <img src={choice.image} className="choice-image" />
-                  <button onClick={() =>setData({choices: choices.filter((c) => c.id !== choice.id),})} style={{fontSize:"18px"}}>
-                    ❌
-                  </button>
+                  <div>
+                    <button onClick={() =>setData({choices: choices.filter((c) => c.id !== choice.id),})} style={{width: '30px', height: '30px', background:"#3E3E4E", borderRadius:"50%",display:"flex", alignItems:"center", justifyContent:"center"}}>
+                      <Trash2 size={"20px"}/>
+                    </button>
+                    <button onClick={() => setEditText(!edittext)} style={{width: '30px', height: '30px', background:"#BC4126", borderRadius:"50%",display:"flex", alignItems:"center", justifyContent:"center",marginTop: '3px'}}>
+                      <Pen size={"20px"}/>
+                    </button>
+                  </div>
+                  
                 </div>
                   
                 <div className="choice-footer">
@@ -147,6 +154,7 @@ export default function ChoicesPage() {
                     type="text"
                     placeholder="Name"
                     value={choice.name}
+                    readOnly={!edittext}
                     onChange={(e) =>
                       setData({
                         choices: choices.map((c) =>
@@ -159,6 +167,7 @@ export default function ChoicesPage() {
                     type="text"
                     placeholder="External URL"
                     value={choice.externalUrl}
+                    readOnly={!edittext}
                     onChange={(e) =>
                       setData({
                         choices: choices.map((c) =>
