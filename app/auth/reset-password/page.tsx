@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Key, ShieldCheck, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
 
@@ -16,7 +15,7 @@ export default function ResetPasswordForm() {
         
         {/* Title: RESET PASSWORD (Neon Purple) */}
         <div className="relative">
-          <h1 className="text-[#bc13fe] text-6xl md:text-8xl font-[1000] italic uppercase tracking-tighter leading-none drop-shadow-[0_0_20px_rgba(188,19,254,0.5)] text-center">
+          <h1 className="text-[#bc13fe] text-5xl md:text-7xl font-[1000] italic uppercase tracking-tighter leading-none drop-shadow-[0_0_20px_rgba(188,19,254,0.5)] text-center">
             RESET PASSWORD
           </h1>
           <div className="absolute -bottom-4 left-0 w-full h-1 bg-gradient-to-r from-transparent via-[#bc13fe] to-transparent"></div>
@@ -26,7 +25,7 @@ export default function ResetPasswordForm() {
           
           {/* New Password Section */}
           <div className="group flex flex-col gap-3">
-            <label className="text-white text-3xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
+            <label className="text-white text-2xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
               New Password
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
@@ -41,7 +40,7 @@ export default function ResetPasswordForm() {
 
           {/* Confirm Password Section */}
           <div className="group flex flex-col gap-3">
-            <label className="text-white text-3xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
+            <label className="text-white text-2xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
               Confirm Password
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
@@ -58,7 +57,7 @@ export default function ResetPasswordForm() {
           <div className="mt-8 flex flex-col items-start gap-8">
             <button
               type="submit"
-              className="group relative w-full h-20 bg-[#c2410c] hover:bg-[#ea580c] text-white rounded-3xl text-5xl font-[1000] uppercase tracking-tighter transition-all active:scale-[0.97] overflow-hidden flex items-center justify-center shadow-[0_20px_50px_rgba(194,65,12,0.3)]"
+              className="group relative w-full h-20 bg-[#c2410c] hover:bg-[#ea580c] text-white rounded-3xl text-4xl font-[1000] uppercase tracking-tighter transition-all active:scale-[0.97] overflow-hidden flex items-center justify-center shadow-[0_20px_50px_rgba(194,65,12,0.3)]"
             >
               <div className="relative z-10 flex items-center gap-4">
                 <span>RESET PASSWORD</span>

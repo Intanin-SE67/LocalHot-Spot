@@ -1,9 +1,7 @@
-import Navbar from "../navbar";
 
 export default function HistoryPage() {
   return (
     <div>
-      <Navbar />
       <div className="container-text">
         <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>My WorldCup</h1>
         <div className="menu-sort">

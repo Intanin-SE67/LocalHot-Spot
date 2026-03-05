@@ -1,6 +1,5 @@
 'use client';
 
-import React from 'react';
 import { Mail, Key, User } from 'lucide-react';
 import Link from 'next/link';
 
@@ -16,7 +15,7 @@ export default function RegisterForm() {
         
         {/* Title: REGISTER */}
         <div className="relative">
-          <h1 className="text-[#bc13fe] text-7xl md:text-9xl font-[1000] italic uppercase tracking-tighter leading-none drop-shadow-[0_0_20px_rgba(188,19,254,0.4)]">
+          <h1 className="text-[#bc13fe] text-5xl md:text-7xl font-[1000] italic uppercase tracking-tighter leading-none drop-shadow-[0_0_20px_rgba(188,19,254,0.4)]">
             REGISTER
           </h1>
           <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#bc13fe] to-transparent"></div>
@@ -26,7 +25,7 @@ export default function RegisterForm() {
           
           {/* Email Section */}
           <div className="group flex flex-col gap-3">
-            <label className="text-white text-3xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
+            <label className="text-white text-2xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
               Email
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
@@ -41,7 +40,7 @@ export default function RegisterForm() {
 
           {/* Password Section */}
           <div className="group flex flex-col gap-3">
-            <label className="text-white text-3xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
+            <label className="text-white text-2xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
               Password
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
@@ -56,7 +55,7 @@ export default function RegisterForm() {
 
           {/* Name Section */}
           <div className="group flex flex-col gap-3">
-            <label className="text-white text-3xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
+            <label className="text-white text-2xl font-black uppercase tracking-tight group-focus-within:text-[#bc13fe] transition-colors">
               What do you want be called ?
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
@@ -73,7 +72,7 @@ export default function RegisterForm() {
           <div className="mt-8 flex flex-col items-start gap-8">
             <button
               type="submit"
-              className="group relative w-full h-20 bg-[#c2410c] hover:bg-[#ea580c] text-white rounded-3xl text-6xl font-[1000] uppercase tracking-tighter transition-all active:scale-[0.97] overflow-hidden flex items-center justify-center shadow-[0_20px_50px_rgba(194,65,12,0.3)] hover:shadow-[0_20px_60px_rgba(234,88,12,0.5)]"
+              className="group relative w-full h-20 bg-[#c2410c] hover:bg-[#ea580c] text-white rounded-3xl text-4xl font-[1000] uppercase tracking-tighter transition-all active:scale-[0.97] overflow-hidden flex items-center justify-center shadow-[0_20px_50px_rgba(194,65,12,0.3)] hover:shadow-[0_20px_60px_rgba(234,88,12,0.5)]"
             >
               <span className="relative z-10">SUBMIT</span>
               

@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Navbar from "../../navbar";
+import Navbar from "../../components/navbar";
 import { useState } from "react";
 import { Play } from 'lucide-react';
 import { title } from "process";
@@ -22,8 +22,7 @@ export default function PlayPage() {
 
   return (
     <div className="bg-play">
-      <Navbar />
-      <div className="container-text" style={{margin:'100px auto',padding:'20px 0 100px 0',display:'flex', justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'15px',}}>
+      <div className="container-text" style={{margin:'auto',padding:'20px 0 100px 0',display:'flex', justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'15px',}}>
         <h1 style={{ fontSize: '45px', fontWeight: 'bold' }}>Name Question.....</h1>
         <p className="button-create" style={{width:'180px',alignItems:'center',display:'flex',justifyContent:'center'}}>32 Round 1/16</p>
       </div>
