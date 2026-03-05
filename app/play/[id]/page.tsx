@@ -11,18 +11,18 @@ export default async function PlayPage({ params, }: { params: Promise<{ id?: str
     return <div>Invalid id</div>;
   }
 
-  const restaurant = await prisma.restaurant.findUnique({
+  const create = await prisma.create.findUnique({
     where: { id: numericId},
   });
 
-  if (!restaurant) {
+  if (!create) {
     return <div>Not found</div>
   }
 
   return (
     <div>
       <Navbar />
-      <PlayClient restaurant={restaurant} />
+      <PlayClient create={create} />
 
     </div>
   );

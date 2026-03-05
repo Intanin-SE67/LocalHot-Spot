@@ -1,10 +1,10 @@
 "use client"
-import type { Restaurant } from "@/generated/prisma";
+import type { Create, Restaurant } from "@/generated/prisma";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import {Play, Bookmark, ThumbsUp, CornerDownRight } from "lucide-react";
 
-export default function PlayClient({ restaurant }: { restaurant: Restaurant }){
+export default function PlayClient({ create }: { create: Create }){
       const router = useRouter();
       const handleOpen = () => setIsOpen(true);
       const handleClose = () => setIsOpen(false);
@@ -25,7 +25,7 @@ export default function PlayClient({ restaurant }: { restaurant: Restaurant }){
             <p>150+</p>
           </div>
           
-          <h1 style={{ fontSize: '35px', fontWeight: 'bold' ,marginBottom: '25px'}}> {restaurant.name}</h1>
+          <h1 style={{ fontSize: '35px', fontWeight: 'bold' ,marginBottom: '25px'}}> {create.title}</h1>
           <p>Top subscribe from 28/12/2025</p>
           <div style={{display: 'flex' ,gap:'10px',marginTop: '15px'}}>
             <button className="button-play"><Bookmark size={20}/>Bookmark</button>
@@ -75,8 +75,8 @@ export default function PlayClient({ restaurant }: { restaurant: Restaurant }){
         <div className="container-text right-column" style={{gap: '5px', alignItems:'center'}}>
           <div style={{width:'75%',gap:'30px',display:'flex',flexDirection:'column',alignItems:'center'}}>
             <img 
-              src={restaurant.imageUrl ?? "../"} 
-              alt={restaurant.name} 
+              src={create.coverImage ?? "../"} 
+              alt={create.title} 
               className="img-card-play"/>
             <button onClick={handleOpen} className="button-create" style={{maxWidth:'960px',width:'90%',height:'90px'}}>
               <p style={{fontSize:'40px'}}>Play</p>
