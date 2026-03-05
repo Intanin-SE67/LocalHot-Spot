@@ -56,7 +56,6 @@ export default function ChoicesPage() {
 
   return (
     <div>
-      <Navbar />
         
       <div className="container-text">
         <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>Edit Worldcup</h1>
