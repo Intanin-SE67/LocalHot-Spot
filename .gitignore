@@ -41,14 +41,6 @@ yarn-error.log*
 next-env.d.ts
 
 /src/generated/prisma
+app/Test/pagetest.tsx
 app/Test/index.tsx
 app/Test/navbartest.tsx
-app/Test/pagetest.tsx
-app/Test/page.tsx
-.gitignore
-app/Test/navbar.tsx
-app/Test/layout.tsx
-app/Test/Category.tsx
-app/Test/navbar.tsx
-.gitignore
-app/Test/navbar.tsx
