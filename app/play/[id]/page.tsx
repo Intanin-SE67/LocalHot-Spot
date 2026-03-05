@@ -1,4 +1,3 @@
-import Navbar from "../../components/navbar";
 import { prisma } from "@/lib/prisma";
 import PlayClient from "./PlayClient"
 
@@ -11,17 +10,19 @@ export default async function PlayPage({ params, }: { params: Promise<{ id?: str
     return <div>Invalid id</div>;
   }
 
-  const restaurant = await prisma.restaurant.findUnique({
+  const create = await prisma.create.findUnique({
     where: { id: numericId},
   });
 
-  if (!restaurant) {
+  if (!create) {
     return <div>Not found</div>
   }
 
   return (
     <div>
-      <PlayClient restaurant={restaurant} />
+      <Navbar />
+      <PlayClient create={create} />
+
     </div>
   );
 }
