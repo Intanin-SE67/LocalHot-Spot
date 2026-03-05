@@ -31,8 +31,11 @@ model Create {
 
 model Choice {
   id          Int     @id @default(autoincrement())
+  name        String  @default("")
   image       String
 
   createId    Int
   create      Create @relation(fields: [createId], references: [id])
+
+  externalUrl String?
 }
