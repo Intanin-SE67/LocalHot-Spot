@@ -4,7 +4,6 @@ type Choice = {
     id: string;
     image: string;
     name: string;
-    file?: File;
 }
 
 type CreateState = {

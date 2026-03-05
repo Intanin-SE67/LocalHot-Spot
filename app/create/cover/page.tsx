@@ -3,61 +3,28 @@ import { useRouter } from "next/navigation";
 import Navbar from "../../navbar";
 import { useState } from "react";
 import { useCreateStore } from "../store";
-import cloudinary from "@/lib/cloundinary";
+import { text } from "stream/consumers";
 
 export default function CoverPage() {
   const router = useRouter();
   const { title, description,coverImage, setData } = useCreateStore();
   const isFormComplete = title.trim() !== "" && description.trim() !== "";
-  const [imageFile, setImageFile] = useState<File | null>(null);
  {/*สำหรับถ้าไม่เติมจะไปหน้าถัดไปไม่ได้ */} 
-  
- const handleNext = async () => {
+  const handleNext = () => {
     if (!isFormComplete) {
-      alert("Please fill in all fields.");
-      return;
-    }
-
-    let finalImage = coverImage;
-
-    if (imageFile) {
-      const formData = new FormData();
-      formData.append("file", imageFile);
-      console.log("imageFile =", imageFile);
-    
-      const res = await fetch("/api/upload", {
-        method: "POST",
-        body: formData,
-      });
-
-      if (!res.ok) {
-        const text = await res.text();
-        console.error("Upload failed:", text);
-        alert("Upload failed");
+        alert("Please fill in all fields.");
         return;
-      }
-      {/*รับ url จาก cloudinary    หมายเหตุconsole.log เป็นแค่การแจ้งเตือนไปที่terminalเฉยๆไม่เกี่ยวอะไร */}
-      const data = await res.json();
-      finalImage = data.secure_url;
-      console.log("Upload response:", data);
     }
-    {/*เก็บลง store.ts เพื่อว่าย้อนกับมาจะได้ไม่หาย*/}
-    setData({
-      title, description, coverImage: finalImage,
-    });
     router.push("/create/choices");
   };
   {/*สำหรับการสร้างเพิ่มรูปปกtitle */}
   const handleCoverUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) return;
-
-    setImageFile(file);
     const imageUrl = URL.createObjectURL(file);
     setData({ coverImage: imageUrl });
   };
 
-  
   return (
     <div>
       <Navbar />
