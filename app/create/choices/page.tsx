@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Navbar from "../../navbar";
 import { useCreateStore } from "../store";
 import { useState } from "react";
 import { Pen } from 'lucide-react';
@@ -57,7 +56,6 @@ export default function ChoicesPage() {
 
   return (
     <div>
-      <Navbar />
         
       <div className="container-text">
         <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>Edit Worldcup</h1>

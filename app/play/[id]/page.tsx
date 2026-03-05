@@ -1,4 +1,3 @@
-import Navbar from "../../navbar";
 import { prisma } from "@/lib/prisma";
 import PlayClient from "./PlayClient"
 
