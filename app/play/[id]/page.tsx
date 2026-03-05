@@ -1,4 +1,4 @@
-import Navbar from "../../navbar";
+import Navbar from "../../components/navbar";
 import { prisma } from "@/lib/prisma";
 import PlayClient from "./PlayClient"
 
@@ -21,9 +21,7 @@ export default async function PlayPage({ params, }: { params: Promise<{ id?: str
 
   return (
     <div>
-      <Navbar />
       <PlayClient restaurant={restaurant} />
-
     </div>
   );
 }

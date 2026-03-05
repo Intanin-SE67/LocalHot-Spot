@@ -2,20 +2,15 @@
 import {useState} from "react";
 import "./globals.css";
 import Category from "./components/Category";
-import Navbar from "./components/navbar";
+import Navbar from "./components/navbarfront";
 import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
-  const [showModel, setShowModel] = useState(false);
-  const handleShowModel = () => {
-    setShowModel(!showModel);
-  };
   const restaurants = await prisma.restaurant.findMany();
   return (
     <html lang="en">
       <body>
-        {showModel && <Category handleShowModel={handleShowModel} />}
-          <Navbar handleShowModel={handleShowModel} />
+          <Navbar  />
           <div className="card-container">
             {restaurants.map((item) =>(
                 <div className="card" key={item.id}>

@@ -59,7 +59,7 @@ export default function LoginForm() {
               className="group relative w-full h-20 bg-[#c2410c] hover:bg-[#ea580c] text-white rounded-3xl text-4xl font-black uppercase tracking-tighter transition-all active:scale-[0.98] overflow-hidden flex items-center justify-center gap-4 shadow-[0_0_30px_rgba(194,65,12,0.5)] hover:shadow-[0_0_50px_rgba(234,88,12,0.7)]"
             >
               <div className="relative z-10 flex items-center justify-center gap-4">
-                Login
+                <a href="../main" className="block px-4 py-2"> Login </a>
                 <ArrowRight size={40} className="group-hover:translate-x-3 transition-transform duration-300" />
               </div>
               
