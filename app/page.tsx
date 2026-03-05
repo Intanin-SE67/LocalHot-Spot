@@ -6,42 +6,50 @@ import Navbar from "./components/navbarfront";
 import { prisma } from "@/lib/prisma";
 
 export default async function Home() {
-  const restaurants = await prisma.restaurant.findMany();
+  const creates = await prisma.create.findMany();
   return (
-    <html lang="en">
-      <body>
-          <Navbar  />
-          <div className="card-container">
-            {restaurants.map((item) =>(
-                <div className="card" key={item.id}>
-                  <a href={`/play/${item.id}`}>
-                    <img
-                      src={item.imageUrl ?? "../"}
-                      alt={item.name}
-                      className="img-card"
-                      style={{objectFit:'cover'}}
-                    />
+    <>
+      <Navbar />
+      <main>
+        <div className="card-container">
 
-                    <div className="card-header">
-                      <p>{item.category}</p>
-                      <div className="p-user">
-                        <img src ="#" className="img-card-header"/>
-                        <span>{item.category}</span>
-                      </div>
-                    </div>
 
-                    <div className="card-body">
-                      <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                        {item.name}
-                      </p>
-                      <p style={{opacity: 0.5}}>
-                        {item.description}
-                      </p>
+          {creates.map((item) =>(
+              <div className="card" key={item.id}>
+                <a href={`/play/${item.id}`}>
+                  <img
+                    src={item.coverImage ?? "../"}
+                    alt={item.title}
+                    className="img-card"
+                    style={{objectFit:'cover'}}
+                  />
+
+                  <div className="card-header">
+                    <p>{item.category}</p>
+                    <div className="p-user">
+                      <img src ="#" className="img-card-header"/>
+                      <span>{item.category}</span>
                     </div>
-                  </a>
-                </div>))}
-          </div>
-      </body>
-    </html>
+                  </div>
+
+                  <div className="card-body">
+                    <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                      {item.title}
+                    </p>
+                    <p style={{opacity: 0.5}}>
+                      {item.description}
+                    </p>
+                  </div>
+                </a>
+              </div>
+            ))}
+
+         
+
+
+        </div>
+        
+      </main>
+    </>
   );
 }
