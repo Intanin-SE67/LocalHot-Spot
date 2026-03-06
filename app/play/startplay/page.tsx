@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Navbar from "../../components/navbar";
+import Navbar from "../../components/Navbar";
 import { useState } from "react";
 import { Play } from 'lucide-react';
 import { title } from "process";

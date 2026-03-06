@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import Navbar from "./navbar";
+import Navbar from "./Navbar";
 import Category from "./Category";
 
 export default function NavbarWrapper() {
