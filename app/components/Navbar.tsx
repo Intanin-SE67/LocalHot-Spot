@@ -1,4 +1,4 @@
-import React from 'react';
+"use client";
 import { Search } from 'lucide-react';
 import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';

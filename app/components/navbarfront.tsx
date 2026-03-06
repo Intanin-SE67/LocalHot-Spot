@@ -1,9 +1,8 @@
-import React from 'react';
 import { Search } from 'lucide-react';
 import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 
-const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
+const Navbar = () => {
     return (
         <div className="main-container">
             <header className="header">

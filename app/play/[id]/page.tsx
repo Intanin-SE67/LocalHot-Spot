@@ -20,7 +20,6 @@ export default async function PlayPage({ params, }: { params: Promise<{ id?: str
 
   return (
     <div>
-      <Navbar />
       <PlayClient create={create} />
 
     </div>
