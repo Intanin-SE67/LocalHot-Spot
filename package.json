@@ -9,11 +9,12 @@
     "lint": "eslint"
   },
   "dependencies": {
+    "@next/env": "^16.1.2",
     "@prisma/client": "^5.22.0",
     "cloudinary": "^2.9.0",
     "lucide-preact": "^0.562.0",
     "lucide-react": "^0.562.0",
-    "next": "16.1.2",
+    "next": "^16.1.2",
     "next-cloudinary": "^6.17.5",
     "node": "^25.8.0",
     "prisma": "^5.22.0",
