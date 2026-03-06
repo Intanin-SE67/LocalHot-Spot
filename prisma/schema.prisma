@@ -35,7 +35,7 @@ model Choice {
   image       String
 
   createId    Int
-  create      Create @relation(fields: [createId], references: [id])
+  create      Create @relation(fields: [createId], references: [id], onDelete: Cascade)
 
   externalUrl String?
 }

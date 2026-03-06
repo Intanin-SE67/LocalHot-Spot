@@ -6,7 +6,7 @@ import { Pen } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 
 export default function ChoicesPage() {
-  const router = useRouter();
+  const router = useRouter(); //state เช่น choices,imageFile,edittext,searchInput,search,sortimg และฟังก์ชันต่างๆ เช่น handleUpload,handleNext
   const { choices, setData } = useCreateStore();
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [edittext, setEditText] = useState(false);

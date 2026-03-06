@@ -1,4 +1,6 @@
 import { prisma } from "@/lib/prisma";
+import { Pen } from 'lucide-react';
+import DeleteButton from "./deletebutton";
 
 export default async function HistoryPage() {
   const creates = await prisma.create.findMany();
@@ -18,12 +20,20 @@ export default async function HistoryPage() {
         {creates.map((create) => (
           <div className="card" key={create.id}>
             {/*<a href={`/play/${create.restaurantId}`}>)*/}
-              <img
-                src={create.coverImage ?? "../"}
-                alt={create.title}
-                className="img-card"
-                style={{objectFit:'cover'}}
-              />
+              <div className="img-card" style={{height:'60%',position:'relative'}}>
+                <div style={{position:'absolute',top: '10px', right: '1%',display:'flex',flexDirection:'column',textAlign:'end',}}>
+                  <DeleteButton id={create.id} />
+                  <button style={{width: '30px', height: '30px', background:"#BC4126", borderRadius:"50%",display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <Pen size={"20px"}/>
+                  </button>
+                </div>
+                <img
+                  src={create.coverImage || "../"}
+                  alt={create.title}
+                  style={{objectFit:'cover' ,height:'100%',width:'100%'}}
+                />
+              </div>
+              
               <div className="card-header">
                 <p>{create.category}</p>
                 <div className="p-user">
