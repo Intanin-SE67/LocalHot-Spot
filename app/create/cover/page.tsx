@@ -1,6 +1,5 @@
 "use client";
 import { useRouter } from "next/navigation";
-import Navbar from "../../navbar";
 import { useState } from "react";
 import { useCreateStore } from "../store";
 import cloudinary from "@/lib/cloundinary";
