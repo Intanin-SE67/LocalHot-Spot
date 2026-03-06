@@ -1,9 +1,30 @@
 'use client';
+import { authClient } from '@/lib/auth-client';
 
 import { Mail, Key, User } from 'lucide-react';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function RegisterForm() {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [name, setName] = useState("");
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    const { data, error } = await authClient.signUp.email(
+      {
+        email, // user email address
+        password, // user password -> min 8 characters by default
+        name, // user display name
+        callbackURL: "/auth/login" //คือ URL ที่จะถูกเปลี่ยนเส้นทางหลังจากลงทะเบียนสำเร็จ
+      });
+    if (error) {
+      alert(error.message);
+      return;
+    } 
+    alert("Registration successful!");
+    window.location.href = "/auth/login"; //เปลี่ยนเส้นทางไปที่หน้า login หลังจากลงทะเบียนสำเร็จ
+  };
   return (
     <div className="min-h-screen w-full bg-[#0a0a0a] flex flex-col items-center justify-center p-6 py-20 selection:bg-[#bc13fe] selection:text-white overflow-x-hidden">
       
@@ -21,7 +42,7 @@ export default function RegisterForm() {
           <div className="absolute -bottom-2 left-0 w-full h-1 bg-gradient-to-r from-[#bc13fe] to-transparent"></div>
         </div>
 
-        <form className="w-full flex flex-col gap-10">
+        <form onSubmit={handleSubmit} className="w-full flex flex-col gap-10">
           
           {/* Email Section */}
           <div className="group flex flex-col gap-3">
@@ -30,6 +51,8 @@ export default function RegisterForm() {
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
               <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
                 type="email"
                 className="w-full bg-transparent text-white text-2xl outline-none placeholder-white/5 font-medium"
                 placeholder="enter your email"
@@ -45,6 +68,8 @@ export default function RegisterForm() {
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
               <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
                 type="password"
                 className="w-full bg-transparent text-white text-2xl outline-none placeholder-white/5 tracking-[0.3em]"
                 placeholder="••••••••"
@@ -60,6 +85,8 @@ export default function RegisterForm() {
             </label>
             <div className="relative border-b-2 border-white/20 group-focus-within:border-[#bc13fe] transition-all pb-4 flex items-center">
               <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
                 type="text"
                 className="w-full bg-transparent text-white text-2xl outline-none placeholder-white/5 font-medium"
                 placeholder="your nickname"
