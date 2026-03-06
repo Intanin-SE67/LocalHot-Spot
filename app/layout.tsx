@@ -1,7 +1,5 @@
-import {useState} from "react";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
-import Category from "./components/Category";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -18,16 +16,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-const [showModel, setShowModel] = useState(false);
-const handleShowModel = () => {
-  setShowModel(!showModel);
-};
   return (
     <html lang="en">
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         {children}
-        {showModel && <Category handleShowModel={handleShowModel} />}
       </body>
     </html>
   );
