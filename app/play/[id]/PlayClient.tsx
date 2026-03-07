@@ -5,14 +5,20 @@ import { useRouter } from "next/navigation";
 import {Play, Bookmark, ThumbsUp, CornerDownRight } from "lucide-react";
 
 export default function PlayClient({ create }: { create: Create }){
-      const router = useRouter();
-      const handleOpen = () => setIsOpen(true);
-      const handleClose = () => setIsOpen(false);
-      const [isOpen, setIsOpen] = useState(false);
+  const router = useRouter();
+  const handleOpen = () => setIsOpen(true);
+  const handleClose = () => setIsOpen(false);
+  const [isOpen, setIsOpen] = useState(false);
+  const [round, setRound] = useState("");
 
-      const handleNext = () => {
-    router.push("/play/startplay");
+  const handleNext = () => {
+    if (!round) {
+      alert("select Round");
+      return;
+    }
+    router.push(`/play/startplay?id=${create.id}`);
   };
+
 
 
   return(
@@ -144,7 +150,7 @@ export default function PlayClient({ create }: { create: Create }){
                 <p style={{fontSize:'35px'}}>No. of Choices</p>
               </div>
               
-              <select className="input-text" id="category" style={{backgroundColor:'#595959',width:'80%',maxWidth:'900px', marginBottom:'40px'}} >
+              <select onChange={(e) => setRound(e.target.value)} className="input-text" id="category" style={{backgroundColor:'#595959',width:'80%',maxWidth:'900px', marginBottom:'40px'}} >
                 <option value="">---- Select Round ----</option>
                 <option value="Restaurants">8 Round</option>
                 <option value="Tourist-Attractions">16 Round</option>

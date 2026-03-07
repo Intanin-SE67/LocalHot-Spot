@@ -1,18 +1,21 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Link2 } from 'lucide-react';
-import { useState } from "react";
 import { House } from 'lucide-react';
+import { useEffect,useState } from "react";
 
 export default function FinishPlayPage() {
   const router = useRouter();
-  const [title, setTitle] = useState("");
-  const [description, setDescription] = useState("");
-
-  const isFormComplete = title.trim() !== "" && description.trim() !== "";
-  
+  const [ winner, setWinner] = useState<any>(() => {
+    if (typeof window !== "undefined"){                 //เช็คว่า กำลัง run  ใน browser ไหม
+        const data = sessionStorage.getItem("winner");  //ดึงข้อมูลkey=winner จากstorageเช่น"{\"id\":1,\"name\":\"Pafai\"}"
+        return data ? JSON.parse(data) : null;          //JSON.parse แปลง stringเป็น obj เช่น  {id:1, name:"Pafai"}
+    }
+    return null;
+  });
+  if (!winner) return <div>Load...</div>;               //ช่วงแรก winner=null  เลยต้องมีเพื่อกันcrash
    const handleNext = () => {
-    router.push("../");
+    router.push("../main");
   };
   return (
     <div className="model-play" style={{backgroundColor:'#05060C'}}>
@@ -22,8 +25,8 @@ export default function FinishPlayPage() {
             </div>
 
             <div style={{width:'90%',height:'60%',margin:'25px 0px 0px 0px',padding:'15px 50px',backgroundColor:'#222220',borderRadius:'15px',filter:'drop-shadow(8px 8px 10px #151414'}}>
-                <p style={{fontSize:'clamp(27px,1.4vw,1.4vw)',fontWeight:'bold',textAlign:'center',padding:'0px 0px'}}>pachai</p>
-                <img src="../../images/pachai.jpg" style={{width:'100%',height:'80%',borderRadius:'15px' ,border:'#E30000 4px solid'}}/>
+                <p style={{fontSize:'clamp(27px,1.4vw,1.4vw)',fontWeight:'bold',textAlign:'center',padding:'0px 0px'}}>{winner.name}</p>
+                <img src={winner.image} style={{width:'100%',height:'80%',borderRadius:'15px' ,border:'#E30000 4px solid'}}/>
                 <div style={{display:'flex',justifyContent:'space-between' ,marginTop:'25px'}}>
                     <p style={{fontSize:'clamp(15px,0.6vw,0.6vw)'}}>Big Thanks to sirichai wansa</p>
                     <h1 className="main-title" style={{fontSize:'clamp(20px,1vw,1vw)',textIndent:'1em'}}><a href="../"> LocalhosT SpoT</a></h1>
@@ -37,7 +40,7 @@ export default function FinishPlayPage() {
 
             <div style={{display:'flex',alignItems:'center' ,justifyContent:'center',width:'95%',marginBottom:'20px'}}>
                 <p className="input-text" style={{margin:'0px',width:'60%',alignItems:'center',display:'flex',justifyContent:'left',borderRadius:'20px 0px 0px 20px'}}>
-                    https://maps.app.goo.gl/3zyKjgH74pmCknYB7
+                    {winner.externalUrl}
                 </p>
                 <button className="button-create" style={{height:'50px',borderRadius:'0px 20px 20px 0px',display:'flex',alignItems:'center' ,justifyContent:'center' }}><Link2 size={30}/></button>
             </div> 
