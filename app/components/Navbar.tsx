@@ -2,8 +2,26 @@
 import { Search } from 'lucide-react';
 import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
+import { authClient } from '@/lib/auth-client';
+import { useRouter } from 'next/navigation';
 
 const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
+    const router = useRouter();
+    const {
+        data: session,
+        isPending,
+        error,
+        refetch
+    } = authClient.useSession();
+    const handleLogout = async () => {
+        await authClient.signOut({
+            fetchOptions: {
+                onSuccess: () => {
+                    router.push("/auth/login");
+                }
+            }
+        }); 
+    }
     return (
             <header className="header">
                 <div className="toolbar">
@@ -42,7 +60,7 @@ const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
                                 <ul className='absolute hidden group-hover:block bg-white text-black rounded-md mt-2 py-2 w-48'>
                                     <li><a href="../Profile" className='block px-4 py-2 hover:bg-gray-200'>Profile</a></li>
                                     <li><a href="../auth/login" className='block px-4 py-2 hover:bg-gray-200'>Login</a></li>
-                                    <li><a href="#" className='block px-4 py-2 hover:bg-gray-200'>Logout</a></li>
+                                    <li><a href="#" onClick={handleLogout} className='block px-4 py-2 hover:bg-gray-200'>Logout</a></li>
                                 </ul>
                             </li>
                         </div>

@@ -1,8 +1,14 @@
 import { prisma } from "@/lib/prisma";
 import { Pen } from 'lucide-react';
 import DeleteButton from "./deletebutton";
+import { getSession } from "@/lib/server";
+import { redirect } from "next/navigation";
 
 export default async function HistoryPage() {
+  const session = await getSession();
+  if (!session) {
+    redirect("/auth/login");
+  }
   const creates = await prisma.create.findMany();
   return (
     <div>

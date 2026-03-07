@@ -1,9 +1,18 @@
 import { prisma } from "@/lib/prisma";
+import { getSession } from "@/lib/server";
+import { redirect } from "next/navigation";
+
 
 export default async function Home() {
+  const session = await getSession();
+  if (!session) {
+    redirect("/auth/login");
+  }
+  const email = session.user.email;
   const creates = await prisma.create.findMany();
   return (
         <div className="card-container">
+          {/*<p>Welcome, {email}!</p> เช็ค emailที่ใช้อยู่*/}
           {creates.map((item) =>(
               <div className="card" key={item.id}>
                 <a href={`/play/${item.id}`}>
