@@ -1,5 +1,10 @@
-
-export default function HistoryPage() {
+import { getSession } from "@/lib/server";
+import { redirect } from "next/navigation";
+export default async function HistoryPage() {
+  const session = await getSession();
+    if (!session) {
+      redirect("/auth/login");
+    }
   return (
     <div>
         <div className="container">
