@@ -9,7 +9,18 @@ export default async function HistoryPage() {
   if (!session) {
     redirect("/auth/login");
   }
-  const creates = await prisma.create.findMany();
+  const creates = await prisma.create.findMany({
+    where: {
+      userId: session.user.id
+    },
+    include: {
+      user: true
+    },
+    orderBy: {
+      id: "desc"
+    }
+  });
+  
   return (
     <div>
       <div className="container-text">
@@ -44,7 +55,7 @@ export default async function HistoryPage() {
                 <p>{create.category}</p>
                 <div className="p-user">
                   <img src ="#" className="img-card-header"/>
-                  <span>{create.category}</span>
+                  <span>{create.user?.name}</span>
                 </div>
               </div>
               <div className="card-body">

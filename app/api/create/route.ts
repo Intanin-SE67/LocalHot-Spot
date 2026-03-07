@@ -1,10 +1,16 @@
 import { NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
+import { getSession } from "@/lib/server";
+import { error } from "console";
 
 
 export async function POST(req: Request) {
+  const session = await getSession()
+  if (!session) {
+    return Response.json({ error:"Unauthorized"}, { status: 401 })
+  }
   const body = await req.json();
-
+  
   const data = await prisma.create.create({
     data: {
       title: body.title,
@@ -13,6 +19,8 @@ export async function POST(req: Request) {
       language: body.language,
       visibility: body.visibility,
       category: body.category,
+
+      userId: session.user.id,
 
       choices: {
         create: body.choices.map((c: any) => ({

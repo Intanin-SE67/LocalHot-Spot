@@ -9,7 +9,11 @@ export default async function Home() {
     redirect("/auth/login");
   }
   const email = session.user.email;
-  const creates = await prisma.create.findMany();
+  const creates = await prisma.create.findMany({
+    include: {
+      user: true
+    }
+  });
   return (
         <div className="card-container">
           {/*<p>Welcome, {email}!</p> เช็ค emailที่ใช้อยู่*/}
@@ -26,7 +30,7 @@ export default async function Home() {
                     <p>{item.category}</p>
                     <div className="p-user">
                       <img src ="#" className="img-card-header"/>
-                      <span>{item.category}</span>
+                      <span>{item.user?.name}</span>
                     </div>
                   </div>
                   <div className="card-body">
