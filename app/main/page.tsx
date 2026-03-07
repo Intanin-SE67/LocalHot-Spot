@@ -10,6 +10,7 @@ export default async function Home() {
   }
   const email = session.user.email;
   const creates = await prisma.create.findMany({
+    //include คือ ให้ Create ดึงข้อมูลuser ที่เป็นเจ้าของมาด้วย
     include: {
       user: true
     }

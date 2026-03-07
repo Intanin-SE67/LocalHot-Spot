@@ -20,7 +20,7 @@ export async function POST(req: Request) {
       visibility: body.visibility,
       category: body.category,
 
-      userId: session.user.id,
+      userId: session.user.id,  // session.user.idก็คือ คนที่loginอยู่ตอนนี้
 
       choices: {
         create: body.choices.map((c: any) => ({

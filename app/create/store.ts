@@ -17,9 +17,6 @@ type CreateState = {
     visibility: string;
     choices: Choice[];
 
-    userId: string | null
-    setUserId: (id: string) => void;
-
     setData: (data: Partial<CreateState>) => void;
 }
 
@@ -33,7 +30,6 @@ export const useCreateStore = create<CreateState>((set) => ({
   choices: [],
   userId: null,
 
-  setUserId: (id) => set({ userId: id }),
 
   setData: (data) => set(data)
 }));

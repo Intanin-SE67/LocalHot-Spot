@@ -1,12 +1,17 @@
-"use client";
-import {useState} from "react";
+
 import "./globals.css";
 import Category from "./components/Category";
 import Navbar from "./components/navbarfront";
 import { prisma } from "@/lib/prisma";
+import { getSession } from "@/lib/server";
 
 export default async function Home() {
-  const creates = await prisma.create.findMany();
+  const creates = await prisma.create.findMany({
+    //include คือ ให้ Create ดึงข้อมูลuser ที่เป็นเจ้าของมาด้วย
+    include: {
+      user: true
+    }
+  });
   return (
     <>
       <Navbar />
@@ -28,7 +33,7 @@ export default async function Home() {
                     <p>{item.category}</p>
                     <div className="p-user">
                       <img src ="#" className="img-card-header"/>
-                      <span>{item.category}</span>
+                      <span>{item.user?.name}</span>
                     </div>
                   </div>
 
