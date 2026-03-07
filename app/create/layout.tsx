@@ -1,6 +1,8 @@
 import { Geist, Geist_Mono } from "next/font/google";
 import "../globals.css";
 import NavbarWrapper from "../components/navbarwrapper";
+import { redirect } from "next/navigation";
+import { getSession } from "@/lib/server";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -12,11 +14,16 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const session = await getSession(); // ป้องกันการเข้าถึงหน้า/create โดยยังไม่ได้ login
+  if (!session) {
+    redirect("/auth/login");
+  }
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
