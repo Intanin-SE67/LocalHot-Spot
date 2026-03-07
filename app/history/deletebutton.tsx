@@ -7,9 +7,11 @@ import { useRouter } from 'next/navigation';
 export default function DeleteButton({ id }: { id: number }) {
   const router = useRouter();
   const Delete = async (id: number) => {
-    await fetch(`/api/delete/${id}`, {
+    const res = await fetch(`/api/delete/${id}`, {
       method: "DELETE",
     });
+    const data = await res.json();
+    console.log(data);
     router.refresh();
   };
   return (
