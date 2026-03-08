@@ -20,6 +20,23 @@ export default async function HistoryPage() {
       id: "desc"
     }
   });
+
+  const history = await prisma.history.findMany({
+    where:{
+      userId: session.user.id
+    },
+    include:{
+      create:{
+        include:{
+          user:true
+        }
+      },
+      winner:true
+    },
+    orderBy:{
+      createdAt:"desc"
+    }
+  })
   
   return (
     <div>
@@ -81,26 +98,27 @@ export default async function HistoryPage() {
         </div>
       </div>
       <div className="container">
-        <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
+        {history.map((item)=>(
+          <div key={item.id} className="card">
+            <img src={item.create.coverImage || "../"} alt="" className="img-card"/>
             <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
+              <p>{item.create.category}</p>
+              <p className="p-user">
                 <img src ="#" className="img-card-header"/>
-                restaurant
+                {item.create.user.name}
               </p>
+              <div className="card-body">
+                <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
+                  {item.create.title}
+                </p>
+                <p style={{opacity: 0.5}}>
+                  {item.create.description}
+                </p>
+              </div>
             </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-            
-        </div>
+          </div>
+        )
+        )}
 
         <div className="card">
 

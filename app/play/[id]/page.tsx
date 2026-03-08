@@ -12,6 +12,9 @@ export default async function PlayPage({ params, }: { params: Promise<{ id: stri
 
   const create = await prisma.create.findUnique({
     where: { id: numericId },
+    include: {
+      user: true
+    }
   });
 
   if (!create) {

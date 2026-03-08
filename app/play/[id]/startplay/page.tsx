@@ -34,9 +34,20 @@ export default function PlayPage() {
       });
   }, [id]);                                                       //เผื่อให้รู่ว่าหน้านี้คือ idอะไร
 
-  const handlePick = (winner: Choice) =>{                         //winner: Choice ตัวที่userกดเลือก
+  const handlePick = async (winner: Choice) =>{                   //winner: Choice ตัวที่userกดเลือก
+    const loser = currentpair[0].id === winner.id
+      ? currentpair[1]
+      : currentpair[0];
     const newWinners = [...winners, winner];                      //การcopy arrayเดิม แล้วเพิ่มตัวใหม่เข้าไป เช่น winners = [pachai], winner = pafai  กลายเป็น newWinners = [pachia, pafai]
     setWinners(newWinners);                                       // อัพเดต state แล้ว randerหน้าใหม่
+
+    await fetch("/api/vote", {
+      method: "POST",
+      body: JSON.stringify({
+        winnerId: winner.id,
+        loserId: loser.id
+      })
+    });
 
     if (index < choices.length) {                                 //เลือกคู่ vs  โดยเริ่มแรก index=0
       setCurrentPair([

@@ -1,15 +1,30 @@
 "use client"
-import type { Create, Restaurant } from "@/generated/prisma";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import {Play, Bookmark, ThumbsUp, CornerDownRight } from "lucide-react";
+import type { Choice, Create } from "@/generated/prisma";
 
-export default function PlayClient({ create }: { create: Create }){
+type CreateWithUser = Create & {
+  user: {
+    name: string
+  }
+}
+
+export default function PlayClient({ create }: { create: CreateWithUser }){
   const router = useRouter();
   const handleOpen = () => setIsOpen(true);
   const handleClose = () => setIsOpen(false);
   const [isOpen, setIsOpen] = useState(false);
   const [round, setRound] = useState("");
+  const [ ranking, setRanking ] = useState<Choice[]>([]);
+
+  useEffect(() => {
+    fetch(`/api/ranking/${create.id}`)
+      .then(res => res.json())
+      .then(data => {
+        setRanking(data);
+      })
+  },[create.id])
 
   const handleNext = () => {
     if (!round) {
@@ -40,8 +55,8 @@ export default function PlayClient({ create }: { create: Create }){
 
           <div style={{display: 'flex' ,gap:'10px',marginTop: '25px',alignItems: 'center'}}>
             <img src ="#" className="img-card-header" style={{width:'30px',height:'30px'}}/>
-            <p style={{fontSize: '20px'}}>By sirichai wansa</p>
-            <p style={{color: '#727670'}}>By sirichai wansa</p>
+            <p style={{fontSize: '20px'}}>By {create.user?.name}</p>
+            <p style={{color: '#727670'}}>By {create.user?.name}</p>
           </div>
           <button className="button-create" style={{width:'200px',borderRadius:'20px',margin:'20px'}}>subscribe</button>
 
@@ -54,20 +69,25 @@ export default function PlayClient({ create }: { create: Create }){
               </thead>
 
               <tbody style={{borderBottom:'2px solid #D4D4D4'}}>
-                <tr>
-                  <td>1</td>
-                  <td><img src="../../images/pachai.jpg"  style={{width:'auto',height:'auto'}}/></td>
-                  <td>pachai</td>
-                  <td>100%</td>
-                  <td>100%</td>
-                </tr>
-                <tr>
-                  <td>2</td>
-                  <td><img src="../../images/pafai.jpg"  style={{width:'auto',height:'auto'}}/></td>
-                  <td>pafai</td>
-                  <td>83%</td>
-                  <td>0%</td>
-                </tr>
+                {ranking.map((choice,index) => {
+                  const winRatio = choice.playCount === 0
+                  ? 0
+                  : Math.round((choice.winCount / choice.playCount) * 100);
+                  
+                  const finalRatio = create.playCount === 0
+                  ? 0
+                  : Math.round((choice.finalWin / create.playCount) * 100);
+
+                  return(
+                    <tr key={choice.id}>
+                      <td>{index+1}</td>
+                      <td><img src={choice.image} style={{width:'80px'}}/></td>
+                      <td>{choice.name}</td>
+                      <td>{winRatio}%</td>
+                      <td>{finalRatio}%</td>
+                    </tr>
+                  )
+                })}
               </tbody>
             </table>
             <div style={{textAlign:'center', margin:'0px auto' ,paddingTop:'15px'}}>

@@ -2,10 +2,42 @@
 import { useRouter } from "next/navigation";
 import { Link2 } from 'lucide-react';
 import { House } from 'lucide-react';
-import { useEffect,useState } from "react";
+import { useEffect,useState,useRef } from "react";
+import { create } from "domain";
 
 export default function FinishPlayPage() {
   const router = useRouter();
+  const called = useRef(false)
+  useEffect(()=>{
+    const winner = JSON.parse(
+        sessionStorage.getItem("winner") || "{}"
+    );
+    if (!winner?.id) return
+    if (called.current) return
+    called.current = true
+
+    fetch("/api/finalwin",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+            winnerId: winner.id,
+            createId: winner.createId
+        })
+    });
+    fetch("/api/history",{
+        method:"POST",
+        headers:{
+            "Content-Type":"application/json"
+        },
+        body: JSON.stringify({
+            winnerId: winner.id,
+            createId: winner.createId
+        })
+    });
+  },[]);
+
   const [ winner, setWinner] = useState<any>(() => {
     if (typeof window !== "undefined"){                 //เช็คว่า กำลัง run  ใน browser ไหม
         const data = sessionStorage.getItem("winner");  //ดึงข้อมูลkey=winner จากstorageเช่น"{\"id\":1,\"name\":\"Pafai\"}"

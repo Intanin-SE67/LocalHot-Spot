@@ -27,8 +27,11 @@ model Create {
   category    String?
   choices     Choice[]
 
-  userId      String
-  user        User      @relation(fields: [userId], references: [id])
+  userId  String
+  user    User      @relation(fields: [userId], references: [id])
+  History History[]
+
+  playCount Int @default(0)
 }
 
 model Choice {
@@ -38,6 +41,26 @@ model Choice {
   createId    Int
   externalUrl String?
   create      Create  @relation(fields: [createId], references: [id], onDelete: Cascade)
+
+  winCount  Int @default(0)
+  playCount Int @default(0)
+  finalWin  Int @default(0)
+
+  histories History[]
+}
+
+model History {
+  id        Int      @id @default(autoincrement())
+  userId    String
+  createId  Int
+  winnerId  Int
+  createdAt DateTime @default(now())
+
+  user   User   @relation(fields: [userId], references: [id])
+  create Create @relation(fields: [createId], references: [id])
+  winner Choice @relation(fields: [winnerId], references: [id])
+
+  @@unique([userId, createId])
 }
 
 model User {
@@ -49,10 +72,11 @@ model User {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
 
-  creates       Create[]
+  creates Create[]
 
-  sessions      Session[]
-  accounts      Account[]
+  sessions Session[]
+  accounts Account[]
+  History  History[]
 }
 
 model Session {
@@ -65,13 +89,13 @@ model Session {
   ipAddress String?
   userAgent String?
 
-  user      User     @relation(fields: [userId], references: [id])
+  user User @relation(fields: [userId], references: [id])
 }
 
 model Account {
   id           String  @id @default(cuid())
   userId       String
-  password      String
+  password     String
   accountId    String
   providerId   String
   accessToken  String?
