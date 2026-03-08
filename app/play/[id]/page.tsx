@@ -2,16 +2,16 @@ import { prisma } from "@/lib/prisma";
 import PlayClient from "./PlayClient"
 
 // eslint-disable-next-line @next/next/no-async-client-component
-export default async function PlayPage({ params, }: { params: Promise<{ id?: string }>; }) {
+export default async function PlayPage({ params, }: { params: Promise<{ id: string }>; }) {
   const { id } = await params;
   const numericId = Number(id);
 
-  if (!id || Number.isNaN(id)) {
+  if (!id || Number.isNaN(numericId)) {
     return <div>Invalid id</div>;
   }
 
   const create = await prisma.create.findUnique({
-    where: { id: numericId},
+    where: { id: numericId },
   });
 
   if (!create) {

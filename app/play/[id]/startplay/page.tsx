@@ -1,14 +1,15 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import { Choice } from "@/generated/prisma";
+import { useParams } from "next/navigation";
 
 
 export default function PlayPage() {
   const router = useRouter();
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id")
+  const params = useParams();
+  const id = params.id as string;
+
   const [currentpair, setCurrentPair] = useState<Choice[]>([]);
   const [choices, setChoices] = useState<Choice[]>([]);
   const [winners, setWinners] = useState<Choice[]>([]);

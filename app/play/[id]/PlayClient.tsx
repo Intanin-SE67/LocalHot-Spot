@@ -16,7 +16,7 @@ export default function PlayClient({ create }: { create: Create }){
       alert("select Round");
       return;
     }
-    router.push(`/play/startplay?id=${create.id}`);
+    router.push(`/play/${create.id}/startplay`);
   };
 
 
