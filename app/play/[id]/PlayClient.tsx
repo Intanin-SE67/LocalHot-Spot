@@ -12,7 +12,7 @@ type CreateWithUser = Create & {
 
 export default function PlayClient({ create }: { create: CreateWithUser }){
   const router = useRouter();
-  const handleOpen = () => setIsOpen(true);                                                             //model เลือกรอบ 8 16 ยังไม่ได้ใช้
+  const handleOpen = () => setIsOpen(true);                                                             //model เลือกรอบ 8 16 
   const handleClose = () => setIsOpen(false);
   const [isOpen, setIsOpen] = useState(false);
   const [round, setRound] = useState("");
@@ -32,7 +32,7 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
       alert("select Round");
       return;
     }
-    router.push(`/play/${create.id}/startplay`);
+    router.push(`/play/${create.id}/startplay?round=${round}`);
   };
 
 
@@ -173,10 +173,11 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
               
               <select onChange={(e) => setRound(e.target.value)} className="input-text" id="category" style={{backgroundColor:'#595959',width:'80%',maxWidth:'900px', marginBottom:'40px'}} >
                 <option value="">---- Select Round ----</option>
-                <option value="Restaurants">8 Round</option>
-                <option value="Tourist-Attractions">16 Round</option>
-                <option value="Convenience-Stops">32 Round</option>
-                <option value="Other">64 Round</option>
+                <option value="4">4 Round</option>
+                <option value="8">8 Round</option>
+                <option value="16">16 Round</option>
+                <option value="32">32 Round</option>
+                <option value="64">64 Round</option>
               </select>
               
               <button onClick={handleNext} className="button-create" style={{maxWidth:'500px',width:'70%',height:'60px', margin:'20px',borderRadius:'20px'}}>

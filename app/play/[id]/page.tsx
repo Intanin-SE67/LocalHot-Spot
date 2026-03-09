@@ -13,7 +13,7 @@ export default async function PlayPage({ params, }: { params: Promise<{ id: stri
   const create = await prisma.create.findUnique({                                           //ดึงข้อมูลจาก db create
     where: { id: numericId },
     include: {
-      user: true
+      user: true,
     }
   });
 
