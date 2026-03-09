@@ -9,17 +9,17 @@ export default function FinishPlayPage() {
   const router = useRouter();
   const called = useRef(false)
   useEffect(()=>{
-    const winner = JSON.parse(
+    const winner = JSON.parse(                           //โหลด winner จาก sessionStorage
         sessionStorage.getItem("winner") || "{}"
     );
     if (!winner?.id) return
     if (called.current) return
     called.current = true
 
-    fetch("/api/finalwin",{
+    fetch("/api/finalwin",{                              //บันทึกผล finalwin
         method:"POST",
         headers:{
-            "Content-Type":"application/json"
+            "Content-Type":"application/json"            //เพื่อ บอกseverว่า bodyที่ส่งมาเป็นJson
         },
         body: JSON.stringify({
             winnerId: winner.id,

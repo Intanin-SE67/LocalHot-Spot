@@ -22,7 +22,7 @@ export default function PlayPage() {
   useEffect(() => {                                               // React Hook ทำงานหลัง render
     if (!id) return;
     
-    fetch(`/api/play/${id}`)
+    fetch(`/api/play/${id}`)                                      //เรียก /api/play/[id]  ตย.การได้เช่น [A,B,C,D]
       .then(res => res.json())                                    //แปลง res เป็น obj
       .then(data => {                                             //จะได้data เป็น [{id:1,name:'pafai'},{id:2,name'pachai',...}]
         const shuffled = shuffle(data);                           //สลับลำดับข้อมูลในarray แบบสุ่ม
@@ -41,7 +41,7 @@ export default function PlayPage() {
     const newWinners = [...winners, winner];                      //การcopy arrayเดิม แล้วเพิ่มตัวใหม่เข้าไป เช่น winners = [pachai], winner = pafai  กลายเป็น newWinners = [pachia, pafai]
     setWinners(newWinners);                                       // อัพเดต state แล้ว randerหน้าใหม่
 
-    await fetch("/api/vote", {
+    await fetch("/api/vote", {                                    // ส่ง vote ไป api เช่น {winnerId: 4 , loserId: 2}
       method: "POST",
       body: JSON.stringify({
         winnerId: winner.id,

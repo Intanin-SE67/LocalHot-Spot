@@ -6,7 +6,7 @@ export async function GET(req: Request,
     const { id } = await params
     const createId = Number(id);
     
-    const data = await prisma.choice.findMany({
+    const data = await prisma.choice.findMany({                 //ดึงchoice ขงอ คำถามนี้ แล้ว เรียงตามfinalwin จากมากไปน้อย
         where: {
             createId: createId
         },

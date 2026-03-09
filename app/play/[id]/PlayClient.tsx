@@ -12,19 +12,19 @@ type CreateWithUser = Create & {
 
 export default function PlayClient({ create }: { create: CreateWithUser }){
   const router = useRouter();
-  const handleOpen = () => setIsOpen(true);
+  const handleOpen = () => setIsOpen(true);                                                             //model เลือกรอบ 8 16 ยังไม่ได้ใช้
   const handleClose = () => setIsOpen(false);
   const [isOpen, setIsOpen] = useState(false);
   const [round, setRound] = useState("");
-  const [ ranking, setRanking ] = useState<Choice[]>([]);
+  const [ ranking, setRanking ] = useState<Choice[]>([]);                                               //<Choice[]> กำหนดว่า ranking เป็นArray ของ Choice
 
   useEffect(() => {
     fetch(`/api/ranking/${create.id}`)
-      .then(res => res.json())
-      .then(data => {
-        setRanking(data);
+      .then(res => res.json())                                                                          //แปลง string JSON เป็น JS Array
+      .then(data => {                                                                                   // dataข้อมูลจากAPI นำเข้าไปเก็บใน state(ranking = data)
+        setRanking(data);                                                                               //updat state & render component
       })
-  },[create.id])
+  },[create.id])                                                                                        //มีเพื่อเช่น ถ้าcreate.idเปลี่ยน = run useEffect ใหม่
 
   const handleNext = () => {
     if (!round) {
@@ -70,11 +70,11 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
 
               <tbody style={{borderBottom:'2px solid #D4D4D4'}}>
                 {ranking.map((choice,index) => {
-                  const winRatio = choice.playCount === 0
+                  const winRatio = choice.playCount === 0                                               //สูตรคำนวนwin ratio
                   ? 0
                   : Math.round((choice.winCount / choice.playCount) * 100);
                   
-                  const finalRatio = create.playCount === 0
+                  const finalRatio = create.playCount === 0                                             //สูตรคำนวณ final win ratio
                   ? 0
                   : Math.round((choice.finalWin / create.playCount) * 100);
 

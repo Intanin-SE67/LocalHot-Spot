@@ -10,7 +10,7 @@ export default async function PlayPage({ params, }: { params: Promise<{ id: stri
     return <div>Invalid id</div>;
   }
 
-  const create = await prisma.create.findUnique({
+  const create = await prisma.create.findUnique({                                           //ดึงข้อมูลจาก db create
     where: { id: numericId },
     include: {
       user: true
