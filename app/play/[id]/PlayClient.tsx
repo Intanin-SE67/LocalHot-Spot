@@ -17,6 +17,7 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
   const [isOpen, setIsOpen] = useState(false);
   const [round, setRound] = useState("");
   const [ ranking, setRanking ] = useState<Choice[]>([]);                                               //<Choice[]> กำหนดว่า ranking เป็นArray ของ Choice
+  const [ showmore, setShowmore ] = useState(false);                                                    //สำหรับ showmore
 
   useEffect(() => {
     fetch(`/api/ranking/${create.id}`)
@@ -69,7 +70,7 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
               </thead>
 
               <tbody style={{borderBottom:'2px solid #D4D4D4'}}>
-                {ranking.map((choice,index) => {
+                {(showmore ? ranking : ranking.slice(0,3)).map((choice,index) => {                      // ถ้้าshowmoreเป็นfalse จะให้แสดง .slice(0,3) คือเอาแค่ 3 ตัวแรก
                   const winRatio = choice.playCount === 0                                               //สูตรคำนวนwin ratio
                   ? 0
                   : Math.round((choice.winCount / choice.playCount) * 100);
@@ -90,8 +91,8 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
                 })}
               </tbody>
             </table>
-            <div style={{textAlign:'center', margin:'0px auto' ,paddingTop:'15px'}}>
-              <button id="showmoreBtn" className="button-create" style={{width:'150px'}}>Show more</button>
+            <div style={{textAlign:'center', margin:'0px auto' ,paddingTop:'15px'}}>                     
+              <button onClick={() => setShowmore(!showmore)} id="showmoreBtn" className="button-create" style={{width:'150px'}}>Show more</button>        {/* เมื่อมีการคลิกเปลี่ยนค่าshowmoreเป็นตรงข้าม */}
             </div>
             
           </div>
