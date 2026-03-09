@@ -6,7 +6,7 @@ import type { Choice, Create } from "@/generated/prisma";
 
 type CreateWithUser = Create & {
   user: {
-    name: string
+    name: string | null
   }
 }
 
