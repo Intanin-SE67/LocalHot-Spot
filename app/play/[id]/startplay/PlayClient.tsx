@@ -20,32 +20,40 @@ export default function PlayClient({ quiz }: { quiz: Create | null }) {
   const rounds =Number(searchParams.get("round"))
   
   function shuffle(list: Choice[]) {
-    return [...list].sort(() =>Math.random() - 0.5);              // ...list คือ copy Array เพื่อไม่ให้แก้arrayเดิม  .sort... สุ่มลำดับ array
+    return [...list].sort(() =>Math.random() - 0.5);                  // ...list คือ copy Array เพื่อไม่ให้แก้arrayเดิม  .sort... สุ่มลำดับ array
   }
-  useEffect(() => {                                               // React Hook ทำงานหลัง render
+  useEffect(() => {                                                   // React Hook ทำงานหลัง render
     if (!id) return;
     
-    fetch(`/api/play/${id}`)                                      //เรียก /api/play/[id]  ตย.การได้เช่น [A,B,C,D]
-      .then(res => res.json())                                    //แปลง res เป็น obj
-      .then(data => {                                             //จะได้data เป็น [{id:1,name:'pafai'},{id:2,name'pachai',...}]
-        const shuffled = shuffle(data);                           //สลับลำดับข้อมูลในarray แบบสุ่ม
-        const selected = shuffled.slice(0, rounds)                //เลือกจำนวนจนาม rounds
+    fetch(`/api/play/${id}`)                                          //เรียก /api/play/[id]  ตย.การได้เช่น [A,B,C,D]
+      .then(res => res.json())                                        //แปลง res เป็น obj
+      .then(data => {                                                 //จะได้data เป็น [{id:1,name:'pafai'},{id:2,name'pachai',...}]
+        const shuffled = shuffle(data);                               //สลับลำดับข้อมูลในarray แบบสุ่ม
+        const maxRound= Math.floor(data.length / 2)
+        function truerounds(n: number) {                              //เช็คว่าใช่ 2กำลัง nไหม
+          return n > 0 && (n &(n-1)) ===0;
+        }
+        if (!rounds || rounds > maxRound || !truerounds(rounds)) {    //เช็คเงื่อนไข ถ้า ไม่มี round และ roundsมากว่า choice/2 และ ไม่ใช่ 2กำลังn แสดง invalid และpushกับหน้าplay/[id]
+          alert("Invalid round");
+          router.push(`/play/${id}`)
+        }
+        const selected = shuffled.slice(0, rounds * 2)                //เลือกจำนวนจนาม rounds
         
-        setChoices(selected)                                      //เก็บลง state ตย. chocie =[A,B,C,D,E,F,G,H] , round = 8
+        setChoices(selected)                                          //เก็บลง state ตย. chocie =[A,B,C,D,E,F,G,H] , round = 8
         setRound(selected.length);
-        setCurrentPair([shuffled[0], shuffled[1]]);               //เลือกคู่แรกมาvs
-        setIndex(2);                                              //เพื่อจะได้คู่ถัดไป
+        setCurrentPair([shuffled[0], shuffled[1]]);                   //เลือกคู่แรกมาvs
+        setIndex(2);                                                  //เพื่อจะได้คู่ถัดไป
       });
-  }, [id, rounds]);                                                       //เผื่อให้รู่ว่าหน้านี้คือ idอะไร
+  }, [id, rounds]);                                                   //เผื่อให้รู่ว่าหน้านี้คือ idอะไร
 
-  const handlePick = async (winner: Choice) =>{                   //winner: Choice ตัวที่userกดเลือก
+  const handlePick = async (winner: Choice) =>{                       //winner: Choice ตัวที่userกดเลือก
     const loser = currentpair[0].id === winner.id
       ? currentpair[1]
       : currentpair[0];
-    const newWinners = [...winners, winner];                      //การcopy arrayเดิม แล้วเพิ่มตัวใหม่เข้าไป เช่น winners = [pachai], winner = pafai  กลายเป็น newWinners = [pachia, pafai]
-    setWinners(newWinners);                                       // อัพเดต state แล้ว randerหน้าใหม่
+    const newWinners = [...winners, winner];                          //การcopy arrayเดิม แล้วเพิ่มตัวใหม่เข้าไป เช่น winners = [pachai], winner = pafai  กลายเป็น newWinners = [pachia, pafai]
+    setWinners(newWinners);                                           // อัพเดต state แล้ว randerหน้าใหม่
 
-    await fetch("/api/vote", {                                    // ส่ง vote ไป api เช่น {winnerId: 4 , loserId: 2}
+    await fetch("/api/vote", {                                        // ส่ง vote ไป api เช่น {winnerId: 4 , loserId: 2}
       method: "POST",
       body: JSON.stringify({
         winnerId: winner.id,
@@ -82,7 +90,7 @@ export default function PlayClient({ quiz }: { quiz: Create | null }) {
     <div className="bg-play">
       <div className="container-text" style={{margin:'auto',padding:'20px 0 100px 0',display:'flex', justifyContent:'center',alignItems:'center',flexWrap:'wrap',gap:'15px',}}>
         <h1 style={{ fontSize: '45px', fontWeight: 'bold' }}>{quiz?.title}</h1>
-        <p className="button-create" style={{width:'180px',alignItems:'center',display:'flex',justifyContent:'center'}}>{round} Round {Math.floor(index/2)}/{round/2}</p>
+        <p className="button-create" style={{width:'180px',alignItems:'center',display:'flex',justifyContent:'center'}}>{round / 2} Round {Math.floor(index/2)}/{round/2}</p>
       </div>
 
       <div className="play-select">

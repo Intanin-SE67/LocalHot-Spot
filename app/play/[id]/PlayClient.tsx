@@ -15,9 +15,11 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
   const handleOpen = () => setIsOpen(true);                                                             //model เลือกรอบ 8 16 
   const handleClose = () => setIsOpen(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [round, setRound] = useState("");
+  const [round, setRound] = useState<number | null>(null);                                            //กไหนด type เป็น number  โดยค่าเริ่มต้นคือ null
   const [ ranking, setRanking ] = useState<Choice[]>([]);                                               //<Choice[]> กำหนดว่า ranking เป็นArray ของ Choice
-  const [ showmore, setShowmore ] = useState(false);                                                    //สำหรับ showmore
+  const [ showmore, setShowmore ] = useState(false);                                                  //สำหรับ showmore
+  
+
 
   useEffect(() => {
     fetch(`/api/ranking/${create.id}`)
@@ -31,6 +33,10 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
     if (!round) {
       alert("select Round");
       return;
+    }
+    const maxround = Math.floor(Math.log2(ranking.length )) - 1                                       //ranking.lengthคำนวนchoice, Math.log2 คือรูท2 ,Math.floor ปัดลง
+    if ( round > maxround ) {
+      alert(`max select ${2 ** maxround} choices`)
     }
     router.push(`/play/${create.id}/startplay?round=${round}`);
   };
@@ -171,13 +177,13 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
                 <p style={{fontSize:'35px'}}>No. of Choices</p>
               </div>
               
-              <select onChange={(e) => setRound(e.target.value)} className="input-text" id="category" style={{backgroundColor:'#595959',width:'80%',maxWidth:'900px', marginBottom:'40px'}} >
-                <option value="">---- Select Round ----</option>
-                <option value="4">4 Round</option>
-                <option value="8">8 Round</option>
-                <option value="16">16 Round</option>
-                <option value="32">32 Round</option>
-                <option value="64">64 Round</option>
+              <select onChange={(e) => setRound(Number(e.target.value))} className="input-text" id="category" style={{backgroundColor:'#595959',width:'80%',maxWidth:'900px', marginBottom:'40px'}} >
+                {/* key; id elementในlist , value: คือค่าที่สงจะส่งไปตินuser เลือก ,r * 2 > ranking.length ตย. 4round ต้องมี 8 choice*/}
+                {[0,4,8,16,32,64].map((r) => (
+                  <option key={r} value={r} disabled= {r * 2 > ranking.length}>                                                                                                                                     
+                    {r} Round
+                  </option>
+                ))}
               </select>
               
               <button onClick={handleNext} className="button-create" style={{maxWidth:'500px',width:'70%',height:'60px', margin:'20px',borderRadius:'20px'}}>
