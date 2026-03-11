@@ -12,7 +12,7 @@ const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
         isPending,
         error,
         refetch
-    } = authClient.useSession();
+    } = authClient.useSession();                                                            //ใช้ useSession เพื่อดึงข้อมูล session ของผู้ใช้ที่ล็อกอินอยู่ ถ้าไม่มี session จะเป็น null และ isPending จะเป็น true ในระหว่างที่กำลังโหลดข้อมูล session
     const handleLogout = async () => {
         await authClient.signOut({
             fetchOptions: {
@@ -58,9 +58,12 @@ const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
                         <div className="icon-container">
                             <li className='relative group'><a href="#"><CircleUser size={35}/></a>
                                 <ul className='absolute hidden group-hover:block bg-white text-black rounded-md mt-2 py-2 w-48'>
-                                    <li><a href="../Profile" className='block px-4 py-2 hover:bg-gray-200'>Profile</a></li>
-                                    <li><a href="../auth/login" className='block px-4 py-2 hover:bg-gray-200'>Login</a></li>
-                                    <li><a href="#" onClick={handleLogout} className='block px-4 py-2 hover:bg-gray-200'>Logout</a></li>
+                                    {!session && (<li><a href="../auth/login" className='block px-4 py-2 hover:bg-gray-200'>Login</a></li>)}
+                                    {session && (
+                                        <>
+                                        <li><a href="../Profile" className='block px-4 py-2 hover:bg-gray-200'>Profile</a></li>
+                                        <li><a href="#" onClick={handleLogout} className='block px-4 py-2 hover:bg-gray-200'>Logout</a></li>
+                                        </>)}
                                 </ul>
                             </li>
                         </div>

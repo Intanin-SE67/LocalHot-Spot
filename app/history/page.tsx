@@ -57,8 +57,9 @@ export default async function HistoryPage() {
               <div className="img-card" style={{height:'60%',position:'relative'}}>
                 <div style={{position:'absolute',top: '10px', right: '1%',display:'flex',flexDirection:'column',textAlign:'end',}}>
                   <DeleteButton id={create.id} />
-                  <button style={{width: '30px', height: '30px', background:"#BC4126", borderRadius:"50%",display:"flex", alignItems:"center", justifyContent:"center"}}>
-                    <Pen size={"20px"}/>
+                  <button  style={{width: '30px', height: '30px', background:"#BC4126", borderRadius:"50%",display:"flex", alignItems:"center", justifyContent:"center"}}>
+                    <a href={`/edit/${create.id}/cover`}><Pen size={"20px"} /></a>
+                    
                   </button>
                 </div>
                 <img

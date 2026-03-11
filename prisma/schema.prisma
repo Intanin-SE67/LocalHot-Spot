@@ -58,7 +58,7 @@ model History {
 
   user   User   @relation(fields: [userId], references: [id])
   create Create @relation(fields: [createId], references: [id])
-  winner Choice @relation(fields: [winnerId], references: [id])
+  winner Choice @relation(fields: [winnerId], references: [id], onDelete: Cascade)
 
   @@unique([userId, createId])
 }
