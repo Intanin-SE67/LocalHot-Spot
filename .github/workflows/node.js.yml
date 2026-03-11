@@ -9,7 +9,14 @@ on:
   pull_request:
     branches: [ "main" ]
 
+
+env:
+  BETTER_AUTH_URL: ${{ secrets.BETTER_AUTH_URL }}
+  BETTER_AUTH_SECRET: ${{ secrets.BETTER_AUTH_SECRET }}
+  DATABASE_URL: ${{ secrets.DATABASE_URL }}
+
 jobs:
+  
   build:
 
     runs-on: ubuntu-latest
