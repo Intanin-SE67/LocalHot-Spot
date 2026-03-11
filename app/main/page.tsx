@@ -21,5 +21,5 @@ export default async function Home({searchParams,}: {searchParams: { search?: st
       user: true
     }
   });
-  return <MainClient creates={creates} email={email} />
+  return <MainClient creates={creates}  />
 }
