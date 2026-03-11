@@ -44,3 +44,4 @@ next-env.d.ts
 app/Test/pagetest.tsx
 app/Test/index.tsx
 app/Test/navbartest.tsx
+.env
