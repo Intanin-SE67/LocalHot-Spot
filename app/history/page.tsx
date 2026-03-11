@@ -53,7 +53,7 @@ export default async function HistoryPage() {
       <div className="container">
         {creates.map((create) => (
           <div className="card" key={create.id}>
-            {/*<a href={`/play/${create.restaurantId}`}>)*/}
+            <a href={`/play/${create.id}`}>
               <div className="img-card" style={{height:'60%',position:'relative'}}>
                 <div style={{position:'absolute',top: '10px', right: '1%',display:'flex',flexDirection:'column',textAlign:'end',}}>
                   <DeleteButton id={create.id} />
@@ -84,7 +84,7 @@ export default async function HistoryPage() {
                   {create.description}
                 </p>
               </div>
-            {/*</a>*/}
+            </a>
           </div>
         ))}
       </div>
@@ -101,13 +101,15 @@ export default async function HistoryPage() {
       <div className="container">
         {history.map((item)=>(
           <div key={item.id} className="card">
-            <img src={item.create.coverImage || "../"} alt="" className="img-card"/>
-            <div className="card-header">
-              <p>{item.create.category}</p>
-              <p className="p-user">
-                <img src ="#" className="img-card-header"/>
-                {item.create.user.name}
-              </p>
+            <a href={`/play/${item.create.id}`}>
+              <img src={item.create.coverImage || "../"} alt="" className="img-card"/>
+              <div className="card-header">
+                <p>{item.create.category}</p>
+                <p className="p-user">
+                  <img src ="#" className="img-card-header"/>
+                  {item.create.user.name}
+                </p>
+              </div>
               <div className="card-body">
                 <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
                   {item.create.title}
@@ -116,52 +118,14 @@ export default async function HistoryPage() {
                   {item.create.description}
                 </p>
               </div>
-            </div>
+              
+            </a>
+            
           </div>
         )
         )}
 
-        <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-            
-        </div>
-
-        <div className="card">
-
-            <img src="../images/อาหารตามสั่ง_Bodynew2.jpg" alt="" className="img-card"/>
-            <div className="card-header">
-              <p>restaurant</p>
-              <p className=" p-user">
-                <img src ="#" className="img-card-header"/>
-                restaurant
-              </p>
-            </div>
-            <div className="card-body">
-              <p style={{ fontSize: '20px', fontWeight: 'bold' }}>
-                A la carte restaurant
-              </p>
-              <p style={{opacity: 0.5}}>
-                Architect & Engineer
-              </p>
-            </div>
-            
-        </div>
+      
       </div>
     </div>
   );
