@@ -8,8 +8,6 @@ import { useSearchStore } from "app/components/store/searchStore";
 
 export default function Home({creates }: { creates : any[]}) {
     const { search } = useSearchStore()
-
-
   return (
         <div className="card-container">
           {/*<p>Welcome, {email}!</p> เช็ค emailที่ใช้อยู่*/}

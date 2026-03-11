@@ -6,14 +6,16 @@ import Navbar from "./components/navbarfront";
 import { prisma } from "@/lib/prisma";
 import { getSession } from "@/lib/server";
 import { useSearchStore } from "app/components/store/searchStore";
+import { useState } from "react";
 
 export default function Home({creates }: { creates : any[]}) {
     const { search } = useSearchStore()
+    const [showModel , setShowModel] = useState(false);
+    const handleShowModel = () => setShowModel(!showModel)
+
   return (
     <>
-      <Navbar handleShowModel={function (): void {
-        throw new Error("Function not implemented.");
-      } } />
+      <Navbar handleShowModel={handleShowModel}/>
       <main>
         <div className="card-container">
 

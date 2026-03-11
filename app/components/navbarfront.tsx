@@ -6,7 +6,7 @@ import { ChevronDown } from 'lucide-react';
 import { useSearchStore } from './store/searchStore';
 
 const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
-     const { search, setSearch } = useSearchStore()
+    const { search, setSearch } = useSearchStore()
     const [ input, setInput ] = useState(false);
     return (
         <div className="main-container">
