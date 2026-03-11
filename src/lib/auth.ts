@@ -8,5 +8,13 @@ export const auth = betterAuth({
     }),
     emailAndPassword: {
       enabled: true,
-      autoSignIn: false},
+      autoSignIn: false
+    },
+    
+    session: {
+      expiresIn: 60 * 60 ,
+      cookieOptions: {
+        maxAge: undefined
+      }
+    }
 });

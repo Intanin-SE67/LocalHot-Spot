@@ -6,7 +6,7 @@ import { redirect } from "next/navigation";
 
 export default async function HistoryPage() {
   const session = await getSession();
-  if (!session) {
+  if (!session?.user.id) {
     redirect("/auth/login");
   }
   const creates = await prisma.create.findMany({

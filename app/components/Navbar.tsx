@@ -4,9 +4,13 @@ import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import { useState } from 'react';
+import { useSearchStore } from './store/searchStore';
 
 const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
     const router = useRouter();
+    const { search, setSearch } = useSearchStore()
+    const [ input, setInput ] = useState(false);
     const {
         data: session,
         isPending,
@@ -48,10 +52,20 @@ const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
                             </button>
                         </div>
                     </div>
-
+                    
                     
                     <div className="toolbar-right">
-                        <div className="icon-container">
+                        {input && (
+                            <input
+                            type='text'
+                            placeholder='Search...'
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            style={{width:'200px', height:'30px',border:'2px'}}
+                            />
+                        )}
+                        <div className="icon-container"
+                        onClick={() => setInput(!input)}>
                             <Search size={35}/>
                         </div>
 

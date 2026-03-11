@@ -1,8 +1,13 @@
+"use client"
+import { useState } from 'react';
 import { Search } from 'lucide-react';
 import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
+import { useSearchStore } from './store/searchStore';
 
-const Navbar = () => {
+const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
+     const { search, setSearch } = useSearchStore()
+    const [ input, setInput ] = useState(false);
     return (
         <div className="main-container">
             <header className="header">
@@ -27,7 +32,17 @@ const Navbar = () => {
 
                     
                     <div className="toolbar-right">
-                        <div className="icon-container">
+                        {input && (
+                            <input
+                            type='text'
+                            placeholder='Search...'
+                            value={search}
+                            onChange={(e) => setSearch(e.target.value)}
+                            style={{width:'200px', height:'30px',border:'2px'}}
+                            />
+                        )}
+                        <div className="icon-container"
+                        onClick={() => setInput(!input)}>
                             <Search size={35}/>
                         </div>
 
