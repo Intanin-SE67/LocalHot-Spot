@@ -488,4 +488,25 @@ tr {
   align-items: flex-start;
   height: 70%;
 }
- /*meow*/
+/*----------------------- Category ------------------*/
+
+.category-container {
+    display: grid;
+    grid-template-columns: auto auto auto;
+    padding: 10px;
+    gap: 20px;
+    text-align: center;
+    margin-top: 20px;
+}
+
+.category-container button {
+    background-color: #381157;
+    font: white italic 24px Inter, sans-serif;
+    padding:6px 15px;
+    border-radius: 5px;
+}
+
+.category-container button:hover {
+    background-color: #3f1b5c;
+    font: white italic 24px Inter, sans-serif;
+}

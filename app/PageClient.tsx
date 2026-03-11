@@ -11,7 +11,9 @@ export default function Home({creates }: { creates : any[]}) {
     const { search } = useSearchStore()
   return (
     <>
-      <Navbar />
+      <Navbar handleShowModel={function (): void {
+        throw new Error("Function not implemented.");
+      } } />
       <main>
         <div className="card-container">
 

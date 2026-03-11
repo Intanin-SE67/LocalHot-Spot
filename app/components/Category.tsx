@@ -1,19 +1,20 @@
 import React from "react";
 
-const CategoryModel = ({ handleShowModel }: { handleShowModel: () => void }) => {
+const CategoryModal = ({ handleShowModel }: { handleShowModel: () => void }) => {
     return (
-        <div className="Absolute">
-            <div 
-                className="w-full h-full absolute top-0 backdrop-filter backdrop-brightness-75 backdrop-blur-md"
-                onClick={handleShowModel}>
-                <div className="w-[400px] h-[300px] bg-gray-300 rounded-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                    <h2 className="text-2xl font-bold mb-4">Category</h2>
-                    <p className="text-gray-600">This is the category modal secret test.</p>
+        <div className="fixed inset-0 z-[9999] flex items-center justify-center">
+            <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" onClick={handleShowModel}/>
+                <div className="relative w-[750px] h-[450px] bg-neutral-600 rounded-lg p-6 shadow-xl">
+                    <h2 className="text-2xl font-bold text-white mb-4">Select Categories</h2>
+                    <div className="category-container">
+                        <button>สถานที่ท่องเที่ยว</button>   <button>ร้านอาหาร</button>      <button>ร้านCafe</button>
+                        <button>    วัด      </button>   <button>สวนสาธารณะ</button>   <button>คลับ/ผับ</button>
+                        <button>    อื่นๆ     </button>
+                    </div>
                 </div>
-            </div>
-        </div>
 
-    )
+        </div>
+    );
 };
 
-export default CategoryModel;
+export default CategoryModal;
