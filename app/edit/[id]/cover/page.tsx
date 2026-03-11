@@ -92,7 +92,7 @@ export default function CoverPage() {
     <div>
         
       <div className="container-text">
-        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>Edit Worldcup</h1>
+        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>Edit Question</h1>
         <div className="menu-sort">
           <span style={{ color: '#BC4126'}}>Cover</span> |
           <span> Choices</span> |

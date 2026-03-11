@@ -31,7 +31,7 @@ export default function PublicCreatePage() {
   return (
     <div>
       <div className="container-text">
-        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>Edit Worldcup</h1>
+        <h1 style={{ fontSize: '35px', fontWeight: 'bold' }}>Create Question</h1>
         <div className="menu-sort">
           <span >Cover</span> |
           <span > Choices</span> |
