@@ -1,5 +1,7 @@
 import { getSession } from "@/lib/server";
 import { redirect } from "next/navigation";
+import ProfileImageUpload from "./ProfileImageSection";
+
 
 export default async function HistoryPage() {
   const session = await getSession();
@@ -45,8 +47,7 @@ export default async function HistoryPage() {
             </div>
     
             <div style={{margin: 'auto'}}>
-              <h1 style={{paddingBottom: '10px'}}>Profile image</h1>
-              <img src="../../images/image-type.png" className="img-input" style={{ width: 400,height: 'auto', margin: '0px auto'}}></img>
+              <ProfileImageUpload initialImage={session.user.image || "../../images/image-type.png"} />
             </div>
             
         </div>
