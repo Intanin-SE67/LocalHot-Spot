@@ -8,7 +8,7 @@ const CategoryModel = ({ handleShowModel }: { handleShowModel: () => void }) => 
                 onClick={handleShowModel}>
                 <div className="w-[400px] h-[300px] bg-gray-300 rounded-lg absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
                     <h2 className="text-2xl font-bold mb-4">Category</h2>
-                    <p className="text-gray-600">This is the category modal Before use.</p>
+                    <p className="text-gray-600">This is the category modal secret test.</p>
                 </div>
             </div>
         </div>
