@@ -36,7 +36,7 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
     }
     const maxround = Math.floor(Math.log2(ranking.length )) - 1                                       //ranking.lengthคำนวนchoice, Math.log2 คือรูท2 ,Math.floor ปัดลง
     if ( round > maxround ) {
-      alert(`max select ${2 ** maxround} choices`)
+      alert(`max select ${2 ** maxround} rounds`)
     }
     router.push(`/play/${create.id}/startplay?round=${round}`);
   };
@@ -179,7 +179,7 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
               
               <select onChange={(e) => setRound(Number(e.target.value))} className="input-text" id="category" style={{backgroundColor:'#595959',width:'80%',maxWidth:'900px', marginBottom:'40px'}} >
                 {/* key; id elementในlist , value: คือค่าที่สงจะส่งไปตินuser เลือก ,r * 2 > ranking.length ตย. 4round ต้องมี 8 choice*/}
-                {[0,4,8,16,32,64].map((r) => (
+                {[0,2,4,8,16,32,64].map((r) => (
                   <option key={r} value={r} disabled= {r * 2 > ranking.length}>                                                                                                                                     
                     {r} Round
                   </option>
