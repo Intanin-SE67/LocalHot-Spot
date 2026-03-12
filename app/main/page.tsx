@@ -4,8 +4,9 @@ import { redirect } from "next/navigation";
 import MainClient from "./MainClient"
 
 
-export default async function Home({searchParams,}: {searchParams: { search?: string };}) {
-  const search = searchParams?.search ?? "";
+export default async function Home({searchParams,}: {searchParams: Promise<{ search?: string }>;}) {
+  const params = await searchParams;
+  const search = params?.search ?? "";
 
   const session = await getSession();
   if (!session) {

@@ -46,8 +46,17 @@ export default function FinishPlayPage() {
     return null;
   });
   if (!winner) return <div>Load...</div>;               //ช่วงแรก winner=null  เลยต้องมีเพื่อกันcrash
-   const handleNext = () => {
-    router.push("../");
+   const handleNext = async () => {
+    const res = await fetch("/api/auth/get-session")
+    const session = await res.json();
+
+    if (!session?.user.id) {
+        router.push("../");
+    }
+    else {
+        router.push("../main")
+    }
+    
   };
 
   const handleOpenlink = () => {                        // func สำหรับเปิดลิงค์ cardที่ชนะถ้ามี

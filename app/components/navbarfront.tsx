@@ -13,7 +13,7 @@ const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
             <header className="header">
                 <div className="toolbar">
                     <div className="title-section">
-                        <h1 className="main-title"><a href="../main">LocalhoT Test</a></h1>
+                        <h1 className="main-title"><a href="../main">LocalhoT SpoT</a></h1>
                     </div>
                     
                     <div className="toolbar-left">
