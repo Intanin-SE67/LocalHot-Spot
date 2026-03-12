@@ -95,8 +95,8 @@ export default function PlayClient({ quiz }: { quiz: Create | null }) {
 
       <div className="play-select">
         {currentpair.length === 2 && (
-          <>
-          <div className="img-play" >
+          <>{/*หลังจากเอาอนิเมะชั้นมาจาก web Animista แล้วมาใส่ในcss  ให้เพิ่ม key={currentpair[..].id}  ให้แต่ละอันด้วย ระบบจะได้รู้ว่าidนี้เปลี่ยนแล้วจะได้ขึ้นanimationใหม่*/}
+          <div key={currentpair[0].id} className="img-play scale-up-center" >                                                                                                 
             <img src={currentpair[0].image} style={{width:'100%',height:'100%',objectFit:'cover',borderRadius:'15px' ,border:'#E30000 4px solid'}}/>
             <button onClick={() => handlePick(currentpair[0])}
             className="button-create" style={{marginTop:'15px',height:'50px',width:'30%',backgroundColor:'#E30000',fontSize:'20px'}}>{currentpair[0].name}</button>
@@ -107,7 +107,7 @@ export default function PlayClient({ quiz }: { quiz: Create | null }) {
           </div>
           
 
-          <div className="img-play" >
+          <div key={currentpair[1].id} className="img-play scale-up-center" >
             <img src={currentpair[1].image} style={{width:'100%',height:'100%',objectFit:'cover',borderRadius:'15px',border:'#0088E3 4px solid'}}/>
             <button onClick={() => handlePick(currentpair[1])}
             className="button-create" style={{marginTop:'15px',height:'50px',width:'30%' ,backgroundColor:'#0088E3',fontSize:'20px'}}>{currentpair[1].name}</button>

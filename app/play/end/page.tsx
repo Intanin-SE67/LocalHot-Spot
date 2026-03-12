@@ -47,8 +47,19 @@ export default function FinishPlayPage() {
   });
   if (!winner) return <div>Load...</div>;               //ช่วงแรก winner=null  เลยต้องมีเพื่อกันcrash
    const handleNext = () => {
-    router.push("../main");
+    router.push("../");
   };
+
+  const handleOpenlink = () => {                        // func สำหรับเปิดลิงค์ cardที่ชนะถ้ามี
+    if (!winner.externalUrl) return;
+    let url = winner.externalUrl;
+    
+    if (!url.startsWith("http")) {
+        url = "https://" + url;
+    }
+    window.open(url,"_blank")                          //blank คือเปิดลิงก์ในแท็บใหม่ของ browser
+}
+
   return (
     <div className="model-play" style={{backgroundColor:'#05060C'}}>
         <div className="model-play-content" style={{aspectRatio:'6/7',width:'60%',maxWidth:'900px',backgroundColor:'#202020',padding:'5px 0px'}}>
@@ -74,7 +85,10 @@ export default function FinishPlayPage() {
                 <p className="input-text" style={{margin:'0px',width:'60%',alignItems:'center',display:'flex',justifyContent:'left',borderRadius:'20px 0px 0px 20px'}}>
                     {winner.externalUrl}
                 </p>
-                <button className="button-create" style={{height:'50px',borderRadius:'0px 20px 20px 0px',display:'flex',alignItems:'center' ,justifyContent:'center' }}><Link2 size={30}/></button>
+                <button 
+                disabled = {!winner.externalUrl}
+                onClick={handleOpenlink}
+                className="button-create" style={{height:'50px',borderRadius:'0px 20px 20px 0px',display:'flex',alignItems:'center' ,justifyContent:'center' }}><Link2 size={30}/></button>
             </div> 
         </div>
     </div>

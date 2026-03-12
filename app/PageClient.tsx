@@ -11,11 +11,11 @@ import { useState } from "react";
 export default function Home({creates }: { creates : any[]}) {
     const { search } = useSearchStore()
     const [showModel , setShowModel] = useState(false);
-    const handleShowModel = () => setShowModel(!showModel)
+    const handleShowModel = () => setShowModel(!showModel)          //เปลี่ยน false เป็นture คือเปลี่ยนไปเปลี่ยนมา
 
   return (
     <>
-      <Navbar handleShowModel={handleShowModel}/>
+      <Navbar handleShowModel={handleShowModel}/>                   {/*คือมันบอกnavbarว่า อันนี้คือปุ่มเปิดปิดโมเดล  ถ้ามีfuncชั้นไหนหรือปุ่มไหนที่มีหน้าตาเด้งขึ้นมาได้  ก็ให้ใช้คำสั่งนี้*/}
       <main>
         <div className="card-container">
 
