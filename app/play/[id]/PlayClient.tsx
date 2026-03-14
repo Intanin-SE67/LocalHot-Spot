@@ -50,7 +50,7 @@ export default function PlayClient({ create }: { create: CreateWithUser }){
         <div className="container-text left-column" style={{gap: '5px'}}>
           <div style={{display: 'flex',gap: '5px', alignItems: 'center'}}>
             <Play size={15}/>
-            <p>150+</p>
+            <p>{create.playCount}+</p>
           </div>
           
           <h1 style={{ fontSize: '35px', fontWeight: 'bold' ,marginBottom: '25px'}}> {create.title}</h1>
