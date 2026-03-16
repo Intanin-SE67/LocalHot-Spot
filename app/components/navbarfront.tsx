@@ -1,5 +1,5 @@
 "use client"
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Search } from 'lucide-react';
 import { CircleUser } from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
@@ -8,6 +8,17 @@ import { useSearchStore } from './store/searchStore';
 const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
     const { search, setSearch } = useSearchStore()
     const [ input, setInput ] = useState(false);
+     const [ user,setUser ] = useState<any>(null);
+    
+        useEffect(() => {
+            const load = async () => {                                                         //ใช้ load = async เพื่อจะสร้างasync function
+                const res = await fetch("/api/auth/get-session");
+                const session = await res.json();
+                setUser(session?.user ?? null);
+            } 
+            load();
+    
+        },[]);
     return (
         <div className="main-container">
             <header className="header">
@@ -47,7 +58,10 @@ const Navbar = ({ handleShowModel }: { handleShowModel: () => void }) => {
                         </div>
 
                         <div className="icon-container">
-                            <li className='relative group'><a href="#"><CircleUser size={35}/></a>
+                            <li className='relative group'><a href="#">
+                                <img 
+                                src={user?.image || "/images/avatar.jpg"}
+                                style={{width:'35px', height:'35px', borderRadius:'100%',border:'2px solid white'}}/></a>
                                 <ul className='absolute hidden group-hover:block bg-white text-black rounded-md mt-2 py-2 w-48'>
                                     <li><a href="../Profile" className='block px-4 py-2 hover:bg-gray-200'>Profile</a></li>
                                 </ul>

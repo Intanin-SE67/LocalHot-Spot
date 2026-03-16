@@ -267,13 +267,14 @@ tr {
 }
 
 .img-input {
-    padding-left: 10px;
+    border: #D9D9D9 2px solid;
     background-color: #2B2D2A;
     border-radius: 15px;
     width: 70%;
     max-width: 700px;
     margin: 0px auto;
-    height: 200px;  
+    height: auto;
+    min-height: 200px;  
     margin-bottom: 10px;
 }
 .img-card-play {
@@ -446,7 +447,7 @@ tr {
 
 
 
-/*ใช้เทสในหน้า create/choice.tsx*/
+/*------------------- ใช้เทสในหน้า create/choice.tsx --------------------*/
 .choices-grid {
   display: flex;
   flex-wrap: wrap;
@@ -461,10 +462,11 @@ tr {
   background: #2b2b2b;
   border-radius: 12px;
   overflow: hidden;
-  padding: 10px;
+  padding-left: 10px;
+  padding-top: 12px;
   justify-content: space-between;
-  height: 400px;
-  max-width: 450px;
+  height: 380px;
+  width: 400px;
 }
 
 .choice-image {
@@ -472,16 +474,16 @@ tr {
   height: 100%;
   object-fit: cover;
   border-radius: 10px;
-  margin-left: 10px;
 
 }
 
 .choice-footer {
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: left;
   margin-top: 0px;
-
+  padding: 7px 10px;
+  gap: 20px;
 }
 .choice-header {
   display: flex;

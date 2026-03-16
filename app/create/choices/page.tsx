@@ -2,7 +2,7 @@
 import { useRouter } from "next/navigation";
 import { useCreateStore } from "../store";
 import { useState } from "react";
-import { Pen } from 'lucide-react';
+import { Link2, Pen } from 'lucide-react';
 import { Trash2 } from 'lucide-react';
 
 export default function ChoicesPage() {
@@ -79,7 +79,7 @@ export default function ChoicesPage() {
         {/* </div} */}
 
 
-        {/*-------------- เทสเทส  -------------------*/}
+        {/*--------------click on upload img -------------------*/}
          <p className="p-create">Upload Images</p>
         <div className="line"></div>
         {/* <div className="container-input"> */}
@@ -153,6 +153,7 @@ export default function ChoicesPage() {
                     placeholder="Name"
                     value={choice.name}
                     readOnly={!edittext}
+                    style={{fontSize:'22px',fontStyle: 'bold',textOverflow:'ellipsis', width:'60%'}}
                     onChange={(e) =>
                       setData({
                         choices: choices.map((c) =>
@@ -161,19 +162,25 @@ export default function ChoicesPage() {
                       })
                     }
                   />
-                  <input
-                    type="text"
-                    placeholder="External URL"
-                    value={choice.externalUrl}
-                    readOnly={!edittext}
-                    onChange={(e) =>
-                      setData({
-                        choices: choices.map((c) =>
-                          c.id === choice.id ? { ...c, externalUrl: e.target.value } : c
-                        ),
-                      })
-                    }
-                  />
+                  <div style={{display:'flex',alignItems:'center' ,justifyContent:'center',width:'95%',marginBottom:'20px'}}>
+                    <input
+                      type="text"
+                      placeholder="External URL"
+                      value={choice.externalUrl}
+                      readOnly={!edittext}
+                      style={{background:'#4E4E4E',fontSize:'18px',textOverflow:'ellipsis', width:'85%',height:'30px',borderRadius:'15px 0px 0px 15px',paddingLeft:'20px'}}
+                      onChange={(e) =>
+                        setData({
+                          choices: choices.map((c) =>
+                            c.id === choice.id ? { ...c, externalUrl: e.target.value } : c
+                          ),
+                        })
+                      }
+                    />
+                    <button 
+                    className="button-create" style={{height:'30px',width:'50px',borderRadius:'0px 20px 20px 0px',display:'flex',alignItems:'center' ,justifyContent:'center' }}><Link2 size={25}/></button>
+                  </div>
+                  
                 </div>
               </div>
             ))}
